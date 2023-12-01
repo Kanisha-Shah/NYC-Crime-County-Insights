@@ -6,7 +6,7 @@ execute:
   echo: true
 
 book:
-  title: "NYC Crimson County Insights"
+  title: "NYC Crime County Insights"
   author:
     - Kanisha Shah (ks4175)
     - Dhruvi Shah (dms2338)

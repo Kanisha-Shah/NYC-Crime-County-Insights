@@ -175,14 +175,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#data-source" id="toc-data-source" class="nav-link active" data-scroll-target="#data-source"><span class="header-section-number">2.0.1</span> Data Source</a></li>
-  <li><a href="#data-format" id="toc-data-format" class="nav-link" data-scroll-target="#data-format"><span class="header-section-number">2.0.2</span> Data Format</a></li>
-  <li><a href="#data-visualise" id="toc-data-visualise" class="nav-link" data-scroll-target="#data-visualise"><span class="header-section-number">2.1</span> Data Visualise</a>
+  <li><a href="#data-frequency" id="toc-data-frequency" class="nav-link active" data-scroll-target="#data-frequency"><span class="header-section-number">2.1</span> Data Frequency :</a></li>
+  <li><a href="#data-format" id="toc-data-format" class="nav-link" data-scroll-target="#data-format"><span class="header-section-number">2.2</span> Data Format :</a>
   <ul class="collapse">
-  <li><a href="#missing-value-analysis" id="toc-missing-value-analysis" class="nav-link" data-scroll-target="#missing-value-analysis"><span class="header-section-number">2.1.1</span> Missing value analysis</a></li>
+  <li><a href="#research-plan" id="toc-research-plan" class="nav-link" data-scroll-target="#research-plan"><span class="header-section-number">2.2.1</span> Research Plan :</a></li>
+  <li><a href="#issues-with-the-data" id="toc-issues-with-the-data" class="nav-link" data-scroll-target="#issues-with-the-data"><span class="header-section-number">2.2.2</span> Issues with the Data</a></li>
   </ul></li>
-  <li><a href="#issues-with-the-data" id="toc-issues-with-the-data" class="nav-link" data-scroll-target="#issues-with-the-data"><span class="header-section-number">2.2</span> Issues with the Data</a></li>
-  <li><a href="#research-plan" id="toc-research-plan" class="nav-link" data-scroll-target="#research-plan"><span class="header-section-number">3</span> Research Plan</a></li>
+  <li><a href="#handling-the-missing-values" id="toc-handling-the-missing-values" class="nav-link" data-scroll-target="#handling-the-missing-values"><span class="header-section-number">2.3</span> Handling the missing values</a>
+  <ul class="collapse">
+  <li><a href="#missing-value-analysis" id="toc-missing-value-analysis" class="nav-link" data-scroll-target="#missing-value-analysis"><span class="header-section-number">2.3.1</span> Missing value analysis</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/Kanisha-Shah/NYC-Crimson-County-Insights/edit/main/data.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/Kanisha-Shah/NYC-Crimson-County-Insights/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
@@ -206,113 +208,262 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<section id="data-source" class="level3" data-number="2.0.1">
-<h3 data-number="2.0.1" class="anchored" data-anchor-id="data-source"><span class="header-section-number">2.0.1</span> Data Source</h3>
-</section>
-<section id="data-format" class="level3" data-number="2.0.2">
-<h3 data-number="2.0.2" class="anchored" data-anchor-id="data-format"><span class="header-section-number">2.0.2</span> Data Format</h3>
-<p><a href="https://docs.google.com/document/d/1BqYf52WOzPXsHwssMj_gBQLIXI4HaXJCcglg4L1_ivc/edit?usp=sharing">Data set Description</a></p>
-<p>###Index Crimes By County &amp; Agency</p>
+<p>We delve into the analysis of four pivotal datasets which has been collected from multiple sources – Hate Crime by County and Bias Type, Adult Arrests (18 and older) by County, Index Crimes by County and Agency, and Jail Population by County. Through these lenses, we seek to unravel the complexities of crime, justice, and societal biases that define the state of New York.</p>
+<p>##Data Dimensions</p>
+<p><a href="https://data.ny.gov/Public-Safety/Index-Crimes-by-County-and-Agency-Beginning-1990/ca8h-8gj">Index Crimes by County and Agency</a> :</p>
+<p>The crime data is categorized into violent and property crimes, providing insights into different aspects of criminal activity. The “Region” column classifies counties into either New York City or Non-New York City, allowing for regional comparisons.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>index_crime_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"C:/Users/DELL/Desktop/Columbia/Sem 1/EDAV/Final Project/Index_Crimes_by_County_and_Agency__Beginning_1990.csv"</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">str</span>(index_crime_data))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Indexcrimes <span class="ot">=</span>  <span class="fu">read.csv</span>(<span class="st">"C:/Users/DELL/Desktop/Columbia/Sem 1/EDAV/Final Project/Index_Crimes_by_County_and_Agency__Beginning_1990.csv"</span>, <span class="at">header=</span><span class="cn">TRUE</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>observations <span class="ot">&lt;-</span> <span class="fu">nrow</span>(Indexcrimes)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>variables <span class="ot">&lt;-</span> <span class="fu">ncol</span>(Indexcrimes)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a small table</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>table_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">Dimension =</span> <span class="fu">c</span>(<span class="st">"No of Observations "</span>, <span class="st">"No of Variables"</span>),</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">Count =</span> <span class="fu">c</span>(observations, variables)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the knitr package</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the table in a visually appealing way</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(table_data, <span class="at">format =</span> <span class="st">"markdown"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-stdout">
-<pre><code>'data.frame':   22048 obs. of  15 variables:
- $ County             : chr  "Albany" "Albany" "Albany" "Albany" ...
- $ Agency             : chr  "Albany City PD" "Albany County Park PD" "Albany County Sheriff" "Albany County State Police" ...
- $ Year               : int  2022 2022 2022 2022 2022 2022 2022 2022 2022 2022 ...
- $ Months.Reported    : int  12 12 12 12 12 12 12 12 12 NA ...
- $ Index.Total        : int  4746 1 127 131 1 434 40 312 2860 9717 ...
- $ Violent.Total      : int  944 0 11 42 0 24 8 48 122 1253 ...
- $ Murder             : int  14 0 0 0 0 0 0 0 2 17 ...
- $ Rape               : int  70 0 3 26 0 9 0 7 1 131 ...
- $ Robbery            : int  233 0 1 5 0 5 3 6 45 305 ...
- $ Aggravated.Assault : int  627 0 7 11 0 10 5 35 74 800 ...
- $ Property.Total     : int  3802 1 116 89 1 410 32 264 2738 8464 ...
- $ Burglary           : int  566 0 10 7 0 25 5 25 189 897 ...
- $ Larceny            : int  2670 1 97 77 1 371 26 214 2448 6795 ...
- $ Motor.Vehicle.Theft: int  566 0 9 5 0 14 1 25 101 772 ...
- $ Region             : chr  "Non-New York City" "Non-New York City" "Non-New York City" "Non-New York City" ...</code></pre>
-</div>
 <div class="cell-output-display">
-
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Dimension</th>
+<th style="text-align: right;">Count</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">No of Observations</td>
+<td style="text-align: right;">22048</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">No of Variables</td>
+<td style="text-align: right;">15</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
-<p>###Hate Crimes By County &amp; Bias</p>
+<p><a href="https://data.ny.gov/Public-Safety/Adult-Arrests-18-and-Older-by-County-Beginning-197/rikd-mt35">Adult Arrests (18 and older) by County</a> :</p>
+<p>The dataset consists of crime data categorized into felonies and misdemeanors, detailing counts for various crime types, including drug-related offenses and Driving While Intoxicated (DWI). It spans multiple years and provides a comprehensive view of criminal activities across different categories in various counties.Each row represents a specific county and year combination, and columns contain different crime-related metrics.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>hate_crime_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"C:/Users/DELL/Desktop/Columbia/Sem 1/EDAV/Final Project/Hate_Crimes_by_County_and_Bias_Type__Beginning_2010.csv"</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">str</span>(hate_crime_data))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>Adult_crimes <span class="ot">=</span>  <span class="fu">read.csv</span>(<span class="st">"C:/Users/DELL/Desktop/Columbia/Sem 1/EDAV/Final Project/Adult_Arrests_18_and_Older_by_County___Beginning_1970.csv"</span>, <span class="at">header=</span><span class="cn">TRUE</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>observations <span class="ot">&lt;-</span> <span class="fu">nrow</span>(Adult_crimes)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>variables <span class="ot">&lt;-</span> <span class="fu">ncol</span>(Adult_crimes)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a small table</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>table_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">Dimension =</span> <span class="fu">c</span>(<span class="st">"No of Observations "</span>, <span class="st">"No of Variables"</span>),</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">Count =</span> <span class="fu">c</span>(observations, variables)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the knitr package</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the table in a visually appealing way</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(table_data, <span class="at">format =</span> <span class="st">"markdown"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-stdout">
-<pre><code>'data.frame':   822 obs. of  44 variables:
- $ County                                      : chr  "Albany" "Albany" "Albany" "Albany" ...
- $ Year                                        : int  2022 2022 2021 2021 2020 2020 2019 2019 2018 2018 ...
- $ Crime.Type                                  : chr  "Crimes Against Persons" "Property Crimes" "Crimes Against Persons" "Property Crimes" ...
- $ Anti.Male                                   : int  0 0 0 0 0 0 0 0 0 0 ...
- $ Anti.Female                                 : int  0 0 0 0 0 0 0 0 0 0 ...
- $ Anti.Transgender                            : int  0 0 1 0 0 0 0 0 0 0 ...
- $ Anti.Gender.Non.Conforming                  : int  0 0 0 0 0 0 0 0 0 0 ...
- $ Anti.Age.                                   : int  0 1 0 1 0 0 0 0 0 0 ...
- $ Anti.White                                  : int  0 3 1 0 1 0 2 0 1 0 ...
- $ Anti.Black                                  : int  9 12 5 3 2 0 2 1 3 1 ...
- $ Anti.American.Indian.Alaskan.Native         : int  0 0 0 0 0 0 0 0 0 0 ...
- $ Anti.Asian                                  : int  0 0 2 0 1 0 0 0 0 1 ...
- $ Anti.Native.Hawaiian.Pacific.Islander       : int  0 0 0 0 0 0 0 0 0 0 ...
- $ Anti.Multi.Racial.Groups                    : int  1 0 1 0 0 0 0 0 0 0 ...
- $ Anti.Other.Race                             : int  0 0 0 0 0 0 0 0 0 0 ...
- $ Anti.Jewish                                 : int  1 1 1 0 0 0 1 0 2 1 ...
- $ Anti.Catholic                               : int  0 0 1 0 0 0 0 0 0 0 ...
- $ Anti.Protestant                             : int  0 0 0 0 0 1 0 0 0 0 ...
- $ Anti.Islamic..Muslim.                       : int  0 0 4 0 0 0 2 0 0 0 ...
- $ Anti.Multi.Religious.Groups                 : int  0 0 0 0 0 0 0 0 0 0 ...
- $ Anti.Atheism.Agnosticism                    : int  0 0 0 0 0 0 0 0 0 0 ...
- $ Anti.Religious.Practice.Generally           : int  0 0 0 0 0 0 0 0 0 0 ...
- $ Anti.Other.Religion                         : int  1 0 0 0 0 0 0 0 0 0 ...
- $ Anti.Buddhist                               : int  0 0 0 0 0 0 0 0 0 0 ...
- $ Anti.Eastern.Orthodox..Greek..Russian..etc..: int  0 0 0 0 0 0 0 0 0 0 ...
- $ Anti.Hindu                                  : int  0 0 0 0 0 0 0 0 0 0 ...
- $ Anti.Jehovahs.Witness                       : int  0 0 0 0 0 0 0 0 0 0 ...
- $ Anti.Mormon                                 : int  0 0 0 0 0 0 0 0 0 0 ...
- $ Anti.Other.Christian                        : int  0 0 0 0 0 0 0 0 1 0 ...
- $ Anti.Sikh                                   : int  0 0 0 0 0 0 0 0 0 0 ...
- $ Anti.Hispanic                               : int  0 0 0 0 0 0 1 0 0 0 ...
- $ Anti.Arab                                   : int  0 0 0 0 0 0 0 0 0 0 ...
- $ Anti.Other.Ethnicity.National.Origin        : int  2 0 0 0 1 1 0 0 0 0 ...
- $ Anti.Non.Hispanic.                          : int  0 0 0 0 0 0 0 0 0 0 ...
- $ Anti.Gay.Male                               : int  4 0 3 0 1 0 3 0 3 0 ...
- $ Anti.Gay.Female                             : int  0 0 1 0 0 0 0 0 1 0 ...
- $ Anti.Gay..Male.and.Female.                  : int  0 0 1 0 0 0 0 0 1 0 ...
- $ Anti.Heterosexual                           : int  0 0 0 0 0 0 0 0 0 0 ...
- $ Anti.Bisexual                               : int  0 0 0 0 0 0 0 0 0 0 ...
- $ Anti.Physical.Disability                    : int  0 0 0 0 0 0 0 0 0 0 ...
- $ Anti.Mental.Disability                      : int  0 0 0 0 0 0 0 0 0 0 ...
- $ Total.Incidents                             : int  18 17 21 4 6 2 11 1 12 3 ...
- $ Total.Victims                               : int  21 22 27 7 9 2 12 1 12 5 ...
- $ Total.Offenders                             : int  18 20 24 7 7 2 11 1 12 3 ...</code></pre>
-</div>
 <div class="cell-output-display">
-
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Dimension</th>
+<th style="text-align: right;">Count</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">No of Observations</td>
+<td style="text-align: right;">3286</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">No of Variables</td>
+<td style="text-align: right;">13</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
+<p><a href="https://data.ny.gov/Public-Safety/Hate-Crimes-by-County-and-Bias-Type-Beginning-2010/6xda-q7ev">Hate Crime by County and Bias Type</a> :</p>
+<p>The Hate Crime by County and Bias Type dataset includes information on hate crime incidents reported across 62 unique counties in New York from 2010 to 2022. It covers a range of attributes, such as crime type, race, color, national origin, ancestry, gender, religion, age, disability, and sexual orientation, providing detailed insights into the characteristics of reported incidents. The dataset records total incidents, victims, and offenders, offering a comprehensive view of hate crimes and bias types in the specified regions over the given period.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Hate_crimes <span class="ot">=</span>  <span class="fu">read.csv</span>(<span class="st">"C:/Users/DELL/Desktop/Columbia/Sem 1/EDAV/Final Project/Hate_Crimes_by_County_and_Bias_Type__Beginning_2010.csv"</span>, <span class="at">header=</span><span class="cn">TRUE</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>observations <span class="ot">&lt;-</span> <span class="fu">nrow</span>(Hate_crimes)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>variables <span class="ot">&lt;-</span> <span class="fu">ncol</span>(Hate_crimes)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a small table</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>table_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">Dimension =</span> <span class="fu">c</span>(<span class="st">"No of Observations "</span>, <span class="st">"No of Variables"</span>),</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">Count =</span> <span class="fu">c</span>(observations, variables)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the knitr package</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the table in a visually appealing way</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(table_data, <span class="at">format =</span> <span class="st">"markdown"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Dimension</th>
+<th style="text-align: right;">Count</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">No of Observations</td>
+<td style="text-align: right;">822</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">No of Variables</td>
+<td style="text-align: right;">44</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><a href="https://data.ny.gov/Public-Safety/Jail-Population-By-County-Beginning-1997/nymx-kgkn">Jail Population by County</a> :</p>
+<p>The Jail Population by County dataset spans 67 unique counties in New York from 1997 to 2022, providing insights into the average daily census, boarding status, and inmate categorization. Attributes like Sentenced, Civil, Federal, Technical Parole Violators, State Readies, and Other Unsentenced offer a nuanced understanding of the diverse inmate populations and their statuses within county facilities. This dataset contributes to a comprehensive analysis of the evolving dynamics of correctional populations over the years.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>JailPoplulation <span class="ot">=</span>  <span class="fu">read.csv</span>(<span class="st">"C:/Users/DELL/Desktop/Columbia/Sem 1/EDAV/Final Project/Jail_Population_By_County__Beginning_1997.csv"</span>, <span class="at">header=</span><span class="cn">TRUE</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>observations <span class="ot">&lt;-</span> <span class="fu">nrow</span>(JailPoplulation )</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>variables <span class="ot">&lt;-</span> <span class="fu">ncol</span>(JailPoplulation )</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a small table</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>table_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">Dimension =</span> <span class="fu">c</span>(<span class="st">"No of Observations "</span>, <span class="st">"No of Variables"</span>),</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">Count =</span> <span class="fu">c</span>(observations, variables)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the knitr package</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the table in a visually appealing way</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(table_data, <span class="at">format =</span> <span class="st">"markdown"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Dimension</th>
+<th style="text-align: right;">Count</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">No of Observations</td>
+<td style="text-align: right;">1723</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">No of Variables</td>
+<td style="text-align: right;">12</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<section id="data-frequency" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="data-frequency"><span class="header-section-number">2.1</span> Data Frequency :</h2>
+<p>Each dataset, including Hate Crime by County and Bias Type, Adult Arrests by County, Index Crimes by County and Agency, and Jail Population by County, is updated on a yearly basis, providing an annual snapshot of the respective categories. This consistent yearly frequency enables a longitudinal analysis, offering insights into the trends and variations in these datasets over time by county.</p>
 </section>
-<section id="data-visualise" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="data-visualise"><span class="header-section-number">2.1</span> Data Visualise</h2>
-<section id="missing-value-analysis" class="level3" data-number="2.1.1">
-<h3 data-number="2.1.1" class="anchored" data-anchor-id="missing-value-analysis"><span class="header-section-number">2.1.1</span> Missing value analysis</h3>
+<section id="data-format" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="data-format"><span class="header-section-number">2.2</span> Data Format :</h2>
+<p>Note: For a comprehensive understanding of the Format of the dataset, it is advisable to refer to the metadata in the link below : <a href="https://docs.google.com/document/d/1BqYf52WOzPXsHwssMj_gBQLIXI4HaXJCcglg4L1_ivc/edit?usp=sharing">Data set Description</a></p>
+<section id="research-plan" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="research-plan"><span class="header-section-number">2.2.1</span> Research Plan :</h3>
+<p>Regional Disparities: Understanding the significant variations in crime rates across different counties and regions in New York</p>
+<p>Crime Type Analysis: Analyzing the crimes exhibited by notable trends or fluctuations. Understanding the prevalence of different offenses, such as violent crimes, property crimes, or specific criminal activities, is crucial for targeted intervention.Information on</p>
+<p>Law Enforcement Effectiveness: How effective have law enforcement agencies been in curbing specific types of crimes. Felony Breakdown, Misdemeanor Breakdown, type of felony (Drug, Violent, DWI, Other) and Misdemeanor.</p>
+<p>Jail Population Analysis : Any correlation with the sentenced, Civil, Federal, Technical Parole Violators, State Readies.</p>
+<p>Hate Crimes : Includes analysis on demographics, religions, Ethnicity , sexual orientation , disabilities , incidents and victims.</p>
+<p>Impact of Societal Changes: Are there correlations between crime rates and broader societal changes, economic conditions, or demographic shifts.</p>
+</section>
+<section id="issues-with-the-data" class="level3" data-number="2.2.2">
+<h3 data-number="2.2.2" class="anchored" data-anchor-id="issues-with-the-data"><span class="header-section-number">2.2.2</span> Issues with the Data</h3>
+<p>Major issues which we have faced are missing values :</p>
+<p>Index Crimes by County and Agency, where months’ data is absent, the chosen approach for addressing this issue is to opt for data exclusion.</p>
 </section>
 </section>
-<section id="issues-with-the-data" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="issues-with-the-data"><span class="header-section-number">2.2</span> Issues with the Data</h2>
-</section>
-<section id="research-plan" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Research Plan</h1>
+<section id="handling-the-missing-values" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="handling-the-missing-values"><span class="header-section-number">2.3</span> Handling the missing values</h2>
+<p>The decision has been made to drop observations with missing values. This strategy ensures transparency in the data handling process and prioritizes a dataset without gaps, contributing to more robust analyses. The rationale for this approach lies in maintaining the integrity of the temporal and categorical dimensions of the data for comprehensive insights.</p>
+<section id="missing-value-analysis" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="missing-value-analysis"><span class="header-section-number">2.3.1</span> Missing value analysis</h3>
+<p>##Jail Population by County</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#index_crime_data &lt;- read.csv("C:/Users/DELL/Desktop/Columbia/Sem 1/EDAV/Final #Project/Index_Crimes_by_County_and_Agency__Beginning_1990.csv")</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#knitr::kable(str(index_crime_data))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>##Hate Crimes By County &amp; Bias</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#index_crime_data &lt;- read.csv("C:/Users/DELL/Desktop/Columbia/Sem 1/EDAV/Final #Project/Hate_Crimes_by_County_and_Bias_Type__Beginning_2010.csv")</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#knitr::kable(str(index_crime_data))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>##Adult Arrests (18 and older) by County</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(naniar)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'naniar' was built under R version 4.3.2</code></pre>
+</div>
+</div>
+<p>##Index Crimes by County and Agency</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(naniar)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">vis_miss</span>(Indexcrimes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="data_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(Indexcrimes,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Region, <span class="at">y =</span> Months.Reported)) <span class="sc">+</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_miss_point</span>() <span class="sc">+</span> </span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="data_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

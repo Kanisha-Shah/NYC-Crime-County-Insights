@@ -11,7 +11,7 @@ The crime data is categorized into violent and property crimes, providing insigh
 The "Region" column classifies counties into either New York City or Non-New York City, allowing for regional comparisons.
 
 ```{r}
-Indexcrimes =  read.csv("C:/Users/HP/Documents/Columbia/MS_DS/EDAV/EDAV PROJECT FINAL/Index_Crimes_by_County_and_Agency__Beginning_1990.csv", header=TRUE)
+Indexcrimes =  read.csv("C:/Users/DELL/Desktop/Columbia/Sem 1/EDAV/Final Project/Index_Crimes_by_County_and_Agency__Beginning_1990.csv", header=TRUE)
 
 observations <- nrow(Indexcrimes)
 variables <- ncol(Indexcrimes)
@@ -34,7 +34,7 @@ kable(table_data, format = "markdown")
 The dataset consists of crime data categorized into felonies and misdemeanors, detailing counts for various crime types, including drug-related offenses and Driving While Intoxicated (DWI). It spans multiple years and provides a comprehensive view of criminal activities across different categories in various counties.Each row represents a specific county and year combination, and columns contain different crime-related metrics.
 
 ```{r}
-Adult_crimes =  read.csv("C:/Users/HP/Documents/Columbia/MS_DS/EDAV/EDAV PROJECT FINAL/Adult_Arrests_18_and_Older_by_County___Beginning_1970.csv", header=TRUE)
+Adult_crimes =  read.csv("C:/Users/DELL/Desktop/Columbia/Sem 1/EDAV/Final Project/Adult_Arrests_18_and_Older_by_County___Beginning_1970.csv", header=TRUE)
 
 observations <- nrow(Adult_crimes)
 variables <- ncol(Adult_crimes)
@@ -60,7 +60,7 @@ The Hate Crime by County and Bias Type dataset includes information on hate crim
 
 
 ```{r}
-Hate_crimes =  read.csv("C:/Users/HP/Documents/Columbia/MS_DS/EDAV/EDAV PROJECT FINAL/Hate_Crimes_by_County_and_Bias_Type__Beginning_2010.csv", header=TRUE)
+Hate_crimes =  read.csv("C:/Users/DELL/Desktop/Columbia/Sem 1/EDAV/Final Project/Hate_Crimes_by_County_and_Bias_Type__Beginning_2010.csv", header=TRUE)
 
 observations <- nrow(Hate_crimes)
 variables <- ncol(Hate_crimes)
@@ -84,7 +84,7 @@ The Jail Population by County dataset spans 67 unique counties in New York from 
 
 ```{r}
 
-JailPoplulation =  read.csv("C:/Users/HP/Documents/Columbia/MS_DS/EDAV/EDAV PROJECT FINAL/Jail_Population_By_County__Beginning_1997.csv", header=TRUE)
+JailPoplulation =  read.csv("C:/Users/DELL/Desktop/Columbia/Sem 1/EDAV/Final Project/Jail_Population_By_County__Beginning_1997.csv", header=TRUE)
 
 observations <- nrow(JailPoplulation )
 variables <- ncol(JailPoplulation )

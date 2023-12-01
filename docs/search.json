@@ -2,42 +2,42 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "NYC Crimson County Insights",
+    "title": "NYC Crime County Insights",
     "section": "",
     "text": "1 Introduction\nOne day, we stumbled upon an eye-opening blog post diving into New York City’s crime stats. Intrigued by the insights, we couldn’t resist exploring further, sparking our own investigative journey into the city’s fascinating dynamics."
   },
   {
     "objectID": "index.html#did-you-read-the-post",
     "href": "index.html#did-you-read-the-post",
-    "title": "NYC Crimson County Insights",
+    "title": "NYC Crime County Insights",
     "section": "1.1 DID YOU READ THE POST?",
     "text": "1.1 DID YOU READ THE POST?\nLet’s dive into a statistical wonderland where data tells tales and numbers unveil the secrets of our journey!\nThe crime rate in New York has exhibited a consistent increase trend since 1990, reflecting unsuccessful law enforcement strategies and community-focused interventions. This incline not only signifies some more public safety which we need to impose but also the effectiveness of targeted crime prevention initiatives, contributing to a safer and more secure environment for residents and visitors alike\nWelcome to the exploration of the intricate dynamics of crime and societal facets within the vibrant and diverse landscape of New York. In this project, we delve into the analysis of four pivotal datasets – Hate Crime by County and Bias Type, Adult Arrests (18 and older) by County, Index Crimes by County and Agency, and Jail Population by County. Through these lenses, we seek to unravel the complexities of crime, justice, and societal biases that define the state of New York"
   },
   {
     "objectID": "index.html#uncovering-the-crime-chronicles-why-this-data-adventure",
     "href": "index.html#uncovering-the-crime-chronicles-why-this-data-adventure",
-    "title": "NYC Crimson County Insights",
+    "title": "NYC Crime County Insights",
     "section": "1.2 UNCOVERING THE CRIME CHRONICLES: WHY THIS DATA ADVENTURE?",
     "text": "1.2 UNCOVERING THE CRIME CHRONICLES: WHY THIS DATA ADVENTURE?\nAgain, the choice of this topic stems from a profound curiosity about the factors influencing safety and security within New York’s counties. The state’s cultural, economic, and demographic diversity provides a rich backdrop for examining the multifaceted nature of crime. By honing in on Hate Crime, Adult Arrest, Index Crimes, and Jail Population, we aim to unearth insights into the unique challenges and successes experienced by New York communities."
   },
   {
     "objectID": "index.html#our-analysis-will-be-focused-on-what",
     "href": "index.html#our-analysis-will-be-focused-on-what",
-    "title": "NYC Crimson County Insights",
+    "title": "NYC Crime County Insights",
     "section": "1.3 OUR ANALYSIS WILL BE FOCUSED ON WHAT??",
     "text": "1.3 OUR ANALYSIS WILL BE FOCUSED ON WHAT??\nEver wondered what makes your hometown unique? Do you know what County is for? Buckle up for a fascinating ride into the heart of New York, where each county is a chapter in the story of our state’s vibrant tapestry. Picture counties as the superheroes of local governance, shaping the ebb and flow of daily life. They’re not just lines on a map; they’re the pulse of our communities! Now, imagine this: each county is a protagonist in a blockbuster movie, playing its part in a dynamic plot of diversity, challenges, and triumphs. Ready for an adventure where data uncovers the secrets of these counties? Let’s dive in and unravel the mysteries of New York, one county at a time!"
   },
   {
     "objectID": "index.html#what-do-we-want-to-do",
     "href": "index.html#what-do-we-want-to-do",
-    "title": "NYC Crimson County Insights",
+    "title": "NYC Crime County Insights",
     "section": "1.4 WHAT DO WE WANT TO DO?",
     "text": "1.4 WHAT DO WE WANT TO DO?\nWe picked the four most interesting questions that struck our minds when we started exploring the data on this topic."
   },
   {
     "objectID": "index.html#four-most-interesting-questions",
     "href": "index.html#four-most-interesting-questions",
-    "title": "NYC Crimson County Insights",
+    "title": "NYC Crime County Insights",
     "section": "1.5 Four most interesting Questions!",
     "text": "1.5 Four most interesting Questions!\n\nHow have crime rates evolved over the years, and are there discernible patterns or fluctuations? Are there significant variations in crime rates a cross different counties and regions in New York?\nWhat factors contribute to the variation in adult arrest rates among New York counties? and how does the demographic makeup of a county influence arrest patterns? and are there correlations between adult arrest rates and other societal indicators within the state?\nWhat are the predominant index crimes within New York’s diverse counties? How do law enforcement agencies contribute to crime rates across the state? Are there geographical variations in the types and frequency of index crimes?\nHow effective are different counties in managing and addressing criminal activity? Are there correlations between jail populations and other societal indicators within the state?"
   },
@@ -60,6 +60,34 @@
     "href": "data.html#handling-the-missing-values",
     "title": "2  Data Description",
     "section": "2.3 Handling the missing values",
-    "text": "2.3 Handling the missing values\nThe decision has been made to drop observations with missing values. This strategy ensures transparency in the data handling process and prioritizes a dataset without gaps, contributing to more robust analyses. The rationale for this approach lies in maintaining the integrity of the temporal and categorical dimensions of the data for comprehensive insights.\n\n2.3.1 Missing value analysis\n##Jail Population by County\n\n\nCode\n#index_crime_data &lt;- read.csv(\"C:/Users/DELL/Desktop/Columbia/Sem 1/EDAV/Final #Project/Index_Crimes_by_County_and_Agency__Beginning_1990.csv\")\n#knitr::kable(str(index_crime_data))\n\n\n##Hate Crimes By County & Bias\n\n\nCode\n#index_crime_data &lt;- read.csv(\"C:/Users/DELL/Desktop/Columbia/Sem 1/EDAV/Final #Project/Hate_Crimes_by_County_and_Bias_Type__Beginning_2010.csv\")\n#knitr::kable(str(index_crime_data))\n\n\n##Adult Arrests (18 and older) by County\n\n\nCode\nlibrary(naniar)\n\n\nWarning: package 'naniar' was built under R version 4.3.2\n\n\n##Index Crimes by County and Agency\n\n\nCode\nlibrary(naniar)\nvis_miss(Indexcrimes)\n\n\n\n\n\n\n\nCode\nlibrary(ggplot2)\n\n\nggplot(Indexcrimes,\n       aes(x = Region, y = Months.Reported)) +\n  geom_miss_point() + \n  facet_wrap(~Year)"
+    "text": "2.3 Handling the missing values\nThe decision has been made to drop observations with missing values. This strategy ensures transparency in the data handling process and prioritizes a dataset without gaps, contributing to more robust analyses. The rationale for this approach lies in maintaining the integrity of the temporal and categorical dimensions of the data for comprehensive insights.\n\n2.3.1 Missing value analysis"
+  },
+  {
+    "objectID": "data.html#jail-population-by-county",
+    "href": "data.html#jail-population-by-county",
+    "title": "2  Data Description",
+    "section": "2.4 Jail Population by County",
+    "text": "2.4 Jail Population by County\n\n\nCode\njail_crime_data &lt;- read.csv(\"C:/Users/DELL/Desktop/Columbia/Sem 1/EDAV/Final Project/Jail_Population_By_County__Beginning_1997.csv\")\nknitr::kable(str(jail_crime_data))\n\n\n'data.frame':   1723 obs. of  12 variables:\n $ Facility.Name..ORI.       : chr  \"All NYC Facilities\" \"All NYC Facilities\" \"All NYC Facilities\" \"All NYC Facilities\" ...\n $ Year                      : int  2022 2021 2020 2019 2018 2017 2016 2022 2021 2020 ...\n $ Census                    : int  5562 5467 4473 7234 8346 9152 9621 9931 9782 8219 ...\n $ Boarded.Out               : int  13 4 2 5 6 7 14 160 118 113 ...\n $ Boarded.In                : int  0 0 0 0 0 0 0 218 165 125 ...\n $ In.House.Census           : int  5549 5463 4471 7228 8340 9145 9607 9990 9828 8231 ...\n $ Sentenced                 : int  347 184 225 800 1047 1277 1273 1856 1561 1556 ...\n $ Civil                     : int  2 1 4 8 7 9 11 34 22 30 ...\n $ Federal                   : int  85 75 63 75 95 113 115 1337 1306 1117 ...\n $ Technical.Parole.Violators: int  53 244 368 738 718 683 658 228 609 742 ...\n $ State.Readies             : int  153 157 15 10 11 16 22 247 467 212 ...\n $ Other.Unsentenced         : int  4909 4803 3796 5597 6463 7047 7527 6288 5863 4574 ..."
+  },
+  {
+    "objectID": "data.html#adult-crimes-by-county-bias",
+    "href": "data.html#adult-crimes-by-county-bias",
+    "title": "2  Data Description",
+    "section": "2.5 Adult Crimes By County & Bias",
+    "text": "2.5 Adult Crimes By County & Bias\n\n\nCode\nadult_crime_data &lt;- read.csv(\"C:/Users/DELL/Desktop/Columbia/Sem 1/EDAV/Final Project/Adult_Arrests_18_and_Older_by_County___Beginning_1970.csv\")\n\n\n\n\nCode\nhate_crime_data &lt;- read.csv(\"C:/Users/DELL/Desktop/Columbia/Sem 1/EDAV/Final Project/Hate_Crimes_by_County_and_Bias_Type__Beginning_2010.csv\")\n\n\n\n\nCode\nlibrary(ggplot2)\n\ncomplete_percentage1 &lt;- colMeans(!is.na(jail_crime_data)) * 100\ncomplete_percentage2 &lt;- colMeans(!is.na(hate_crime_data)) * 100\ncomplete_percentage3 &lt;- colMeans(!is.na(adult_crime_data)) * 100\n\n# Creating data frames for ggplot\ndata1 &lt;- data.frame(columns = names(complete_percentage1), completeness = complete_percentage1, dataset = \"Jail Dataset\")\ndata2 &lt;- data.frame(columns = names(complete_percentage2), completeness = complete_percentage2, dataset = \"Hate Dataset \")\ndata3 &lt;- data.frame(columns = names(complete_percentage3), completeness = complete_percentage3, dataset = \"Adult Crime Dataset\")\n\n# Combine data frames\ncombined_data &lt;- rbind(data1, data2, data3)\n\n# Sorting the values\ncombined_data &lt;- combined_data[order(combined_data$completeness, decreasing = TRUE), ]\n\n# Creating bar plots with ggplot and subplots\nggplot(combined_data, aes(x = columns, y = completeness, fill = columns)) +\n  geom_bar(stat = \"identity\", color = \"black\") +\n  labs(title = \"Percentage of Non-Missing Values by Column\",\n       x = \"Columns\", y = \"Completeness (%)\") +\n  theme_minimal() +\n  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +\n  facet_wrap(~ dataset, scales = \"free\") +\n  theme(legend.position = \"none\")"
+  },
+  {
+    "objectID": "data.html#adult-arrests-18-and-older-by-county",
+    "href": "data.html#adult-arrests-18-and-older-by-county",
+    "title": "2  Data Description",
+    "section": "2.6 Adult Arrests (18 and older) by County",
+    "text": "2.6 Adult Arrests (18 and older) by County\n\n\nCode\nlibrary(naniar)\n\n\nWarning: package 'naniar' was built under R version 4.3.2"
+  },
+  {
+    "objectID": "data.html#index-crimes-by-county-and-agency",
+    "href": "data.html#index-crimes-by-county-and-agency",
+    "title": "2  Data Description",
+    "section": "2.7 Index Crimes by County and Agency",
+    "text": "2.7 Index Crimes by County and Agency\n\n\nCode\nlibrary(naniar)\nvis_miss(Indexcrimes)\n\n\n\n\n\n\n\nCode\nlibrary(ggplot2)\n\n\nggplot(Indexcrimes,\n       aes(x = Region, y = Months.Reported)) +\n  geom_miss_point() + \n  facet_wrap(~Year)"
   }
 ]

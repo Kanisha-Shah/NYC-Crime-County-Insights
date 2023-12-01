@@ -13,6 +13,7 @@ The "Region" column classifies counties into either New York City or Non-New Yor
 ```{r}
 Indexcrimes =  read.csv("C:/Users/DELL/Desktop/Columbia/Sem 1/EDAV/Final Project/Index_Crimes_by_County_and_Agency__Beginning_1990.csv", header=TRUE)
 
+
 observations <- nrow(Indexcrimes)
 variables <- ncol(Indexcrimes)
 
@@ -35,6 +36,7 @@ The dataset consists of crime data categorized into felonies and misdemeanors, d
 
 ```{r}
 Adult_crimes =  read.csv("C:/Users/DELL/Desktop/Columbia/Sem 1/EDAV/Final Project/Adult_Arrests_18_and_Older_by_County___Beginning_1970.csv", header=TRUE)
+
 
 observations <- nrow(Adult_crimes)
 variables <- ncol(Adult_crimes)
@@ -62,6 +64,7 @@ The Hate Crime by County and Bias Type dataset includes information on hate crim
 ```{r}
 Hate_crimes =  read.csv("C:/Users/DELL/Desktop/Columbia/Sem 1/EDAV/Final Project/Hate_Crimes_by_County_and_Bias_Type__Beginning_2010.csv", header=TRUE)
 
+
 observations <- nrow(Hate_crimes)
 variables <- ncol(Hate_crimes)
 
@@ -85,6 +88,7 @@ The Jail Population by County dataset spans 67 unique counties in New York from 
 ```{r}
 
 JailPoplulation =  read.csv("C:/Users/DELL/Desktop/Columbia/Sem 1/EDAV/Final Project/Jail_Population_By_County__Beginning_1997.csv", header=TRUE)
+
 
 observations <- nrow(JailPoplulation )
 variables <- ncol(JailPoplulation )
@@ -148,21 +152,55 @@ The decision has been made to drop observations with missing values. This strate
 
 ### Missing value analysis
 
-##Jail Population by County
+## Jail Population by County
 ```{r}
-#index_crime_data <- read.csv("C:/Users/DELL/Desktop/Columbia/Sem 1/EDAV/Final #Project/Index_Crimes_by_County_and_Agency__Beginning_1990.csv")
-#knitr::kable(str(index_crime_data))
+jail_crime_data <- read.csv("C:/Users/DELL/Desktop/Columbia/Sem 1/EDAV/Final Project/Jail_Population_By_County__Beginning_1997.csv")
+knitr::kable(str(jail_crime_data))
 ```
 
-##Hate Crimes By County & Bias
+## Adult Crimes By County & Bias
 ```{r}
-#index_crime_data <- read.csv("C:/Users/DELL/Desktop/Columbia/Sem 1/EDAV/Final #Project/Hate_Crimes_by_County_and_Bias_Type__Beginning_2010.csv")
-#knitr::kable(str(index_crime_data))
+
+adult_crime_data <- read.csv("C:/Users/DELL/Desktop/Columbia/Sem 1/EDAV/Final Project/Adult_Arrests_18_and_Older_by_County___Beginning_1970.csv")
 ```
 
+```{r}
 
+hate_crime_data <- read.csv("C:/Users/DELL/Desktop/Columbia/Sem 1/EDAV/Final Project/Hate_Crimes_by_County_and_Bias_Type__Beginning_2010.csv")
 
-##Adult Arrests (18 and older) by County
+```
+
+```{r}
+
+library(ggplot2)
+
+complete_percentage1 <- colMeans(!is.na(jail_crime_data)) * 100
+complete_percentage2 <- colMeans(!is.na(hate_crime_data)) * 100
+complete_percentage3 <- colMeans(!is.na(adult_crime_data)) * 100
+
+# Creating data frames for ggplot
+data1 <- data.frame(columns = names(complete_percentage1), completeness = complete_percentage1, dataset = "Jail Dataset")
+data2 <- data.frame(columns = names(complete_percentage2), completeness = complete_percentage2, dataset = "Hate Dataset ")
+data3 <- data.frame(columns = names(complete_percentage3), completeness = complete_percentage3, dataset = "Adult Crime Dataset")
+
+# Combine data frames
+combined_data <- rbind(data1, data2, data3)
+
+# Sorting the values
+combined_data <- combined_data[order(combined_data$completeness, decreasing = TRUE), ]
+
+# Creating bar plots with ggplot and subplots
+ggplot(combined_data, aes(x = columns, y = completeness, fill = columns)) +
+  geom_bar(stat = "identity", color = "black") +
+  labs(title = "Percentage of Non-Missing Values by Column",
+       x = "Columns", y = "Completeness (%)") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  facet_wrap(~ dataset, scales = "free") +
+  theme(legend.position = "none")
+```
+
+## Adult Arrests (18 and older) by County
 ```{r}
 
 
@@ -174,7 +212,7 @@ library(naniar)
 
 
 
-##Index Crimes by County and Agency
+## Index Crimes by County and Agency
 ```{r}
 
 

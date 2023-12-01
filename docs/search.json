@@ -4,20 +4,34 @@
     "href": "index.html",
     "title": "NYC Crimson County Insights",
     "section": "",
-    "text": "1 Introduction"
+    "text": "1 Introduction\nOne day, we stumbled upon an eye-opening blog post diving into New York City’s crime stats. Intrigued by the insights, we couldn’t resist exploring further, sparking our own investigative journey into the city’s fascinating dynamics."
   },
   {
-    "objectID": "data.html#description",
-    "href": "data.html#description",
-    "title": "2  Data",
-    "section": "2.1 Description",
-    "text": "2.1 Description"
+    "objectID": "index.html#did-you-read-the-post",
+    "href": "index.html#did-you-read-the-post",
+    "title": "NYC Crimson County Insights",
+    "section": "1.1 DID YOU READ THE POST?",
+    "text": "1.1 DID YOU READ THE POST?\nLet’s dive into a statistical wonderland where data tells tales and numbers unveil the secrets of our journey!\nThe crime rate in New York has exhibited a consistent increase trend since 1990, reflecting unsuccessful law enforcement strategies and community-focused interventions. This incline not only signifies some more public safety which we need to impose but also the effectiveness of targeted crime prevention initiatives, contributing to a safer and more secure environment for residents and visitors alike\nWelcome to the exploration of the intricate dynamics of crime and societal facets within the vibrant and diverse landscape of New York. In this project, we delve into the analysis of four pivotal datasets – Hate Crime by County and Bias Type, Adult Arrests (18 and older) by County, Index Crimes by County and Agency, and Jail Population by County. Through these lenses, we seek to unravel the complexities of crime, justice, and societal biases that define the state of New York\n\n1.1.1 YOU ALSO THOUGHT RIGHT WHY THIS TOPIC?\nAgain, the choice of this topic stems from a profound curiosity about the factors influencing safety and security within New York’s counties. The state’s cultural, economic, and demographic diversity provides a rich backdrop for examining the multifaceted nature of crime. By honing in on Hate Crime, Adult Arrest, Index Crimes, and Jail Population, we aim to unearth insights into the unique challenges and successes experienced by New York communities.\n\n\n1.1.2 OUR ANALYSIS WILL BE FOCUSED ON WHAT??\nEver wondered what makes your hometown unique? Do you know what County is for? Buckle up for a fascinating ride into the heart of New York, where each county is a chapter in the story of our state’s vibrant tapestry. Picture counties as the superheroes of local governance, shaping the ebb and flow of daily life. They’re not just lines on a map; they’re the pulse of our communities! Now, imagine this: each county is a protagonist in a blockbuster movie, playing its part in a dynamic plot of diversity, challenges, and triumphs. Ready for an adventure where data uncovers the secrets of these counties? Let’s dive in and unravel the mysteries of New York, one county at a time!\n\n\n1.1.3 WHAT DO WE WANT TO DO?\nWe picked the four most interesting questions that struck our minds when we started exploring the data on this topic.\n\n1.1.3.1 Four most interesting Questions!\n\nHow have crime rates evolved over the years, and are there discernible patterns or fluctuations? Are there significant variations in crime rates a cross different counties and regions in New York?\nWhat factors contribute to the variation in adult arrest rates among New York counties? and how does the demographic makeup of a county influence arrest patterns? and are there correlations between adult arrest rates and other societal indicators within the state?\nWhat are the predominant index crimes within New York’s diverse counties? How do law enforcement agencies contribute to crime rates across the state? Are there geographical variations in the types and frequency of index crimes?\nHow effective are different counties in managing and addressing criminal activity? Are there correlations between jail populations and other societal indicators within the state?"
   },
   {
-    "objectID": "data.html#missing-value-analysis",
-    "href": "data.html#missing-value-analysis",
-    "title": "2  Data",
-    "section": "2.2 Missing value analysis",
-    "text": "2.2 Missing value analysis"
+    "objectID": "data.html",
+    "href": "data.html",
+    "title": "2  Data Description",
+    "section": "",
+    "text": "3 Research Plan"
+  },
+  {
+    "objectID": "data.html#data-visualise",
+    "href": "data.html#data-visualise",
+    "title": "2  Data Description",
+    "section": "2.1 Data Visualise",
+    "text": "2.1 Data Visualise\n\n2.1.1 Missing value analysis"
+  },
+  {
+    "objectID": "data.html#issues-with-the-data",
+    "href": "data.html#issues-with-the-data",
+    "title": "2  Data Description",
+    "section": "2.2 Issues with the Data",
+    "text": "2.2 Issues with the Data"
   }
 ]

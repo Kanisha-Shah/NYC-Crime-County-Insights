@@ -10,11 +10,11 @@ The crime rate in New York has exhibited a consistent increase trend since 1990,
 
 Welcome to the exploration of the intricate dynamics of crime and societal facets within the vibrant and diverse landscape of New York. In this project, we delve into the analysis of four pivotal datasets -- Hate Crime by County and Bias Type, Adult Arrests (18 and older) by County, Index Crimes by County and Agency, and Jail Population by County. Through these lenses, we seek to unravel the complexities of crime, justice, and societal biases that define the state of New York
 
-### YOU ALSO THOUGHT RIGHT WHY THIS TOPIC?
+## UNCOVERING THE CRIME CHRONICLES: WHY THIS DATA ADVENTURE?
 
 Again, the choice of this topic stems from a profound curiosity about the factors influencing safety and security within New York's counties. The state's cultural, economic, and demographic diversity provides a rich backdrop for examining the multifaceted nature of crime. By honing in on Hate Crime, Adult Arrest, Index Crimes, and Jail Population, we aim to unearth insights into the unique challenges and successes experienced by New York communities.
 
-### OUR ANALYSIS WILL BE FOCUSED ON WHAT??
+## OUR ANALYSIS WILL BE FOCUSED ON WHAT??
 
 Ever wondered what makes your hometown unique? Do you know what County is for? Buckle up for a fascinating ride into the heart of New York, where each county is a chapter in the story of our state's vibrant tapestry. Picture counties as the superheroes of local governance, shaping the ebb and flow of daily life. They're not just lines on a map; they're the pulse of our communities! Now, imagine this: each county is a protagonist in a blockbuster movie, playing its part in a dynamic plot of diversity, challenges, and triumphs. Ready for an adventure where data uncovers the secrets of these counties? Let's dive in and unravel the mysteries of New York, one county at a time!
 

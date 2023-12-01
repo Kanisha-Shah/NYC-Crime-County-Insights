@@ -1,28 +1,195 @@
-# Data Description
+### Data Description
 
-### Data Source
+We delve into the analysis of four pivotal datasets which has been collected from multiple sources – Hate Crime by County and Bias Type, Adult Arrests (18 and older) by County, Index Crimes by County and Agency, and Jail Population by County. Through these lenses, we seek to unravel the complexities of crime, justice, and societal biases that define the state of New York.
 
-### Data Format
 
+##Data Dimensions 
+
+[Index Crimes by County and Agency](https://data.ny.gov/Public-Safety/Index-Crimes-by-County-and-Agency-Beginning-1990/ca8h-8gj) :
+
+The crime data is categorized into violent and property crimes, providing insights into different aspects of criminal activity.
+The "Region" column classifies counties into either New York City or Non-New York City, allowing for regional comparisons.
+
+```{r}
+Indexcrimes =  read.csv("C:/Users/HP/Documents/Columbia/MS_DS/EDAV/EDAV PROJECT FINAL/Index_Crimes_by_County_and_Agency__Beginning_1990.csv", header=TRUE)
+
+observations <- nrow(Indexcrimes)
+variables <- ncol(Indexcrimes)
+
+# Creating a small table
+table_data <- data.frame(
+  Dimension = c("No of Observations ", "No of Variables"),
+  Count = c(observations, variables)
+)
+
+# Load the knitr package
+library(knitr)
+
+# Print the table in a visually appealing way
+kable(table_data, format = "markdown")
+
+```
+[Adult Arrests (18 and older) by County](https://data.ny.gov/Public-Safety/Adult-Arrests-18-and-Older-by-County-Beginning-197/rikd-mt35) :
+
+The dataset consists of crime data categorized into felonies and misdemeanors, detailing counts for various crime types, including drug-related offenses and Driving While Intoxicated (DWI). It spans multiple years and provides a comprehensive view of criminal activities across different categories in various counties.Each row represents a specific county and year combination, and columns contain different crime-related metrics.
+
+```{r}
+Adult_crimes =  read.csv("C:/Users/HP/Documents/Columbia/MS_DS/EDAV/EDAV PROJECT FINAL/Adult_Arrests_18_and_Older_by_County___Beginning_1970.csv", header=TRUE)
+
+observations <- nrow(Adult_crimes)
+variables <- ncol(Adult_crimes)
+
+# Creating a small table
+table_data <- data.frame(
+  Dimension = c("No of Observations ", "No of Variables"),
+  Count = c(observations, variables)
+)
+
+# Load the knitr package
+library(knitr)
+
+# Print the table in a visually appealing way
+kable(table_data, format = "markdown")
+
+```
+
+
+[Hate Crime by County and Bias Type](https://data.ny.gov/Public-Safety/Hate-Crimes-by-County-and-Bias-Type-Beginning-2010/6xda-q7ev) :
+
+The Hate Crime by County and Bias Type dataset includes information on hate crime incidents reported across 62 unique counties in New York from 2010 to 2022. It covers a range of attributes, such as crime type, race, color, national origin, ancestry, gender, religion, age, disability, and sexual orientation, providing detailed insights into the characteristics of reported incidents. The dataset records total incidents, victims, and offenders, offering a comprehensive view of hate crimes and bias types in the specified regions over the given period.
+
+
+```{r}
+Hate_crimes =  read.csv("C:/Users/HP/Documents/Columbia/MS_DS/EDAV/EDAV PROJECT FINAL/Hate_Crimes_by_County_and_Bias_Type__Beginning_2010.csv", header=TRUE)
+
+observations <- nrow(Hate_crimes)
+variables <- ncol(Hate_crimes)
+
+# Creating a small table
+table_data <- data.frame(
+  Dimension = c("No of Observations ", "No of Variables"),
+  Count = c(observations, variables)
+)
+
+# Load the knitr package
+library(knitr)
+
+# Print the table in a visually appealing way
+kable(table_data, format = "markdown")
+
+```
+[Jail Population by County](https://data.ny.gov/Public-Safety/Jail-Population-By-County-Beginning-1997/nymx-kgkn) :
+
+The Jail Population by County dataset spans 67 unique counties in New York from 1997 to 2022, providing insights into the average daily census, boarding status, and inmate categorization. Attributes like Sentenced, Civil, Federal, Technical Parole Violators, State Readies, and Other Unsentenced offer a nuanced understanding of the diverse inmate populations and their statuses within county facilities. This dataset contributes to a comprehensive analysis of the evolving dynamics of correctional populations over the years.
+
+```{r}
+
+JailPoplulation =  read.csv("C:/Users/HP/Documents/Columbia/MS_DS/EDAV/EDAV PROJECT FINAL/Jail_Population_By_County__Beginning_1997.csv", header=TRUE)
+
+observations <- nrow(JailPoplulation )
+variables <- ncol(JailPoplulation )
+
+# Creating a small table
+table_data <- data.frame(
+  Dimension = c("No of Observations ", "No of Variables"),
+  Count = c(observations, variables)
+)
+
+# Load the knitr package
+library(knitr)
+
+# Print the table in a visually appealing way
+kable(table_data, format = "markdown")
+
+```
+
+
+
+## Data Frequency : 
+Each dataset, including Hate Crime by County and Bias Type, Adult Arrests by County, Index Crimes by County and Agency, and Jail Population by County, is updated on a yearly basis, providing an annual snapshot of the respective categories. This consistent yearly frequency enables a longitudinal analysis, offering insights into the trends and variations in these datasets over time by county.
+
+ 
+
+## Data Format : 
+
+Note: For a comprehensive understanding of the Format of the dataset, it is advisable to refer to the metadata in the link below :
 [Data set Description](https://docs.google.com/document/d/1BqYf52WOzPXsHwssMj_gBQLIXI4HaXJCcglg4L1_ivc/edit?usp=sharing)
 
-###Index Crimes By County & Agency 
-```{r}
-index_crime_data <- read.csv("C:/Users/DELL/Desktop/Columbia/Sem 1/EDAV/Final Project/Index_Crimes_by_County_and_Agency__Beginning_1990.csv")
-knitr::kable(str(index_crime_data))
-```
 
-###Hate Crimes By County & Bias
-```{r}
-hate_crime_data <- read.csv("C:/Users/DELL/Desktop/Columbia/Sem 1/EDAV/Final Project/Hate_Crimes_by_County_and_Bias_Type__Beginning_2010.csv")
-knitr::kable(str(hate_crime_data))
-```
 
-## Data Visualise
+### Research Plan :
+
+Regional Disparities: Understanding the  significant variations in crime rates across different counties and regions in New York
+
+Crime Type Analysis: Analyzing the crimes exhibited by notable trends or fluctuations. Understanding the prevalence of different offenses, such as violent crimes, property crimes, or specific criminal activities, is crucial for targeted intervention.Information on 
+
+Law Enforcement Effectiveness: How effective have law enforcement agencies been in curbing specific types of crimes. Felony Breakdown, Misdemeanor Breakdown, type of felony (Drug, Violent, DWI, Other)  and Misdemeanor.
+
+Jail Population Analysis : Any correlation with the sentenced, Civil, Federal, Technical Parole Violators, State Readies.
+
+Hate Crimes : Includes analysis on demographics, religions, Ethnicity , sexual orientation , disabilities , incidents and victims.
+
+Impact of Societal Changes: Are there correlations between crime rates and broader societal changes, economic conditions, or demographic shifts.
+
+
+
+### Issues with the Data
+
+Major issues which we have faced are missing values : 
+
+Index Crimes by County and Agency, where months' data is absent, the chosen approach for addressing this issue is to opt for data exclusion. 
+
+## Handling the missing values
+
+The decision has been made to drop observations with missing values. This strategy ensures transparency in the data handling process and prioritizes a dataset without gaps, contributing to more robust analyses. The rationale for this approach lies in maintaining the integrity of the temporal and categorical dimensions of the data for comprehensive insights.
+
+
+
 
 ### Missing value analysis
 
-## Issues with the Data
+##Jail Population by County
+```{r}
+#index_crime_data <- read.csv("C:/Users/DELL/Desktop/Columbia/Sem 1/EDAV/Final #Project/Index_Crimes_by_County_and_Agency__Beginning_1990.csv")
+#knitr::kable(str(index_crime_data))
+```
 
-# Research Plan
+##Hate Crimes By County & Bias
+```{r}
+#index_crime_data <- read.csv("C:/Users/DELL/Desktop/Columbia/Sem 1/EDAV/Final #Project/Hate_Crimes_by_County_and_Bias_Type__Beginning_2010.csv")
+#knitr::kable(str(index_crime_data))
+```
 
+
+
+##Adult Arrests (18 and older) by County
+```{r}
+
+
+
+library(naniar)
+
+
+```
+
+
+
+##Index Crimes by County and Agency
+```{r}
+
+
+
+library(naniar)
+vis_miss(Indexcrimes)
+```
+```{r}
+
+library(ggplot2)
+
+
+ggplot(Indexcrimes,
+       aes(x = Region, y = Months.Reported)) +
+  geom_miss_point() + 
+  facet_wrap(~Year)
+
+```

@@ -1,4 +1,9 @@
-# Data
+# Data Description
+
+### Data Source
+
+### Data Format
+
 [Data set Description](https://docs.google.com/document/d/1BqYf52WOzPXsHwssMj_gBQLIXI4HaXJCcglg4L1_ivc/edit?usp=sharing)
 
 ###Index Crimes By County & Agency 
@@ -9,11 +14,15 @@ knitr::kable(str(index_crime_data))
 
 ###Hate Crimes By County & Bias
 ```{r}
-index_crime_data <- read.csv("C:/Users/DELL/Desktop/Columbia/Sem 1/EDAV/Final Project/Hate_Crimes_by_County_and_Bias_Type__Beginning_2010.csv")
-knitr::kable(str(index_crime_data))
+hate_crime_data <- read.csv("C:/Users/DELL/Desktop/Columbia/Sem 1/EDAV/Final Project/Hate_Crimes_by_County_and_Bias_Type__Beginning_2010.csv")
+knitr::kable(str(hate_crime_data))
 ```
 
-## Description
+## Data Visualise
 
+### Missing value analysis
 
-## Missing value analysis
+## Issues with the Data
+
+# Research Plan
+

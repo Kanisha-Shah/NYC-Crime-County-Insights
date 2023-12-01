@@ -117,7 +117,7 @@ Note: For a comprehensive understanding of the Format of the dataset, it is advi
 
 
 
-### Research Plan
+### Research Plan :
 
 Regional Disparities: Understanding the  significant variations in crime rates across different counties and regions in New York
 
@@ -148,7 +148,7 @@ The decision has been made to drop observations with missing values. This strate
 
 ### Missing value analysis
 
-##Index Crimes By County & Agency 
+##Jail Population by County
 ```{r}
 #index_crime_data <- read.csv("C:/Users/DELL/Desktop/Columbia/Sem 1/EDAV/Final #Project/Index_Crimes_by_County_and_Agency__Beginning_1990.csv")
 #knitr::kable(str(index_crime_data))
@@ -160,6 +160,17 @@ The decision has been made to drop observations with missing values. This strate
 #knitr::kable(str(index_crime_data))
 ```
 
+
+
+##Adult Arrests (18 and older) by County
+```{r}
+
+
+
+library(naniar)
+
+
+```
 
 
 

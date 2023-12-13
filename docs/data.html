@@ -175,20 +175,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#data-frequency" id="toc-data-frequency" class="nav-link active" data-scroll-target="#data-frequency"><span class="header-section-number">2.1</span> Data Frequency :</a></li>
-  <li><a href="#data-format" id="toc-data-format" class="nav-link" data-scroll-target="#data-format"><span class="header-section-number">2.2</span> Data Format :</a>
+  <li><a href="#technical-description" id="toc-technical-description" class="nav-link active" data-scroll-target="#technical-description"><span class="header-section-number">2.1</span> Technical Description</a>
   <ul class="collapse">
-  <li><a href="#research-plan" id="toc-research-plan" class="nav-link" data-scroll-target="#research-plan"><span class="header-section-number">2.2.1</span> Research Plan :</a></li>
-  <li><a href="#issues-with-the-data" id="toc-issues-with-the-data" class="nav-link" data-scroll-target="#issues-with-the-data"><span class="header-section-number">2.2.2</span> Issues with the Data</a></li>
+  <li><a href="#data-dimensions" id="toc-data-dimensions" class="nav-link" data-scroll-target="#data-dimensions"><span class="header-section-number">2.1.1</span> Data Dimensions</a></li>
+  <li><a href="#data-frequency" id="toc-data-frequency" class="nav-link" data-scroll-target="#data-frequency"><span class="header-section-number">2.1.2</span> Data Frequency</a></li>
+  <li><a href="#data-format" id="toc-data-format" class="nav-link" data-scroll-target="#data-format"><span class="header-section-number">2.1.3</span> Data Format</a></li>
   </ul></li>
-  <li><a href="#handling-the-missing-values" id="toc-handling-the-missing-values" class="nav-link" data-scroll-target="#handling-the-missing-values"><span class="header-section-number">2.3</span> Handling the missing values</a>
+  <li><a href="#research-plan" id="toc-research-plan" class="nav-link" data-scroll-target="#research-plan"><span class="header-section-number">2.2</span> Research Plan</a></li>
+  <li><a href="#missing-value-analysis" id="toc-missing-value-analysis" class="nav-link" data-scroll-target="#missing-value-analysis"><span class="header-section-number">2.3</span> Missing Value Analysis</a>
   <ul class="collapse">
-  <li><a href="#missing-value-analysis" id="toc-missing-value-analysis" class="nav-link" data-scroll-target="#missing-value-analysis"><span class="header-section-number">2.3.1</span> Missing value analysis</a></li>
+  <li><a href="#handling-the-missing-values" id="toc-handling-the-missing-values" class="nav-link" data-scroll-target="#handling-the-missing-values"><span class="header-section-number">2.3.1</span> Handling the missing values</a></li>
   </ul></li>
-  <li><a href="#jail-population-by-county" id="toc-jail-population-by-county" class="nav-link" data-scroll-target="#jail-population-by-county"><span class="header-section-number">2.4</span> Jail Population by County</a></li>
-  <li><a href="#adult-crimes-by-county-bias" id="toc-adult-crimes-by-county-bias" class="nav-link" data-scroll-target="#adult-crimes-by-county-bias"><span class="header-section-number">2.5</span> Adult Crimes By County &amp; Bias</a></li>
-  <li><a href="#adult-arrests-18-and-older-by-county" id="toc-adult-arrests-18-and-older-by-county" class="nav-link" data-scroll-target="#adult-arrests-18-and-older-by-county"><span class="header-section-number">2.6</span> Adult Arrests (18 and older) by County</a></li>
-  <li><a href="#index-crimes-by-county-and-agency" id="toc-index-crimes-by-county-and-agency" class="nav-link" data-scroll-target="#index-crimes-by-county-and-agency"><span class="header-section-number">2.7</span> Index Crimes by County and Agency</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/Kanisha-Shah/NYC-Crimson-County-Insights/edit/main/data.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/Kanisha-Shah/NYC-Crimson-County-Insights/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
@@ -213,30 +210,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 <p>We delve into the analysis of four pivotal datasets which has been collected from multiple sources – Hate Crime by County and Bias Type, Adult Arrests (18 and older) by County, Index Crimes by County and Agency, and Jail Population by County. Through these lenses, we seek to unravel the complexities of crime, justice, and societal biases that define the state of New York.</p>
-<p>##Data Dimensions</p>
+<section id="technical-description" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="technical-description"><span class="header-section-number">2.1</span> Technical Description</h2>
+<section id="data-dimensions" class="level3" data-number="2.1.1">
+<h3 data-number="2.1.1" class="anchored" data-anchor-id="data-dimensions"><span class="header-section-number">2.1.1</span> Data Dimensions</h3>
 <p><a href="https://data.ny.gov/Public-Safety/Index-Crimes-by-County-and-Agency-Beginning-1990/ca8h-8gj">Index Crimes by County and Agency</a> :</p>
 <p>The crime data is categorized into violent and property crimes, providing insights into different aspects of criminal activity. The “Region” column classifies counties into either New York City or Non-New York City, allowing for regional comparisons.</p>
 <div class="cell">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Indexcrimes <span class="ot">=</span>  <span class="fu">read.csv</span>(<span class="st">"C:/Users/DELL/Desktop/Columbia/Sem 1/EDAV/Final Project/Index_Crimes_by_County_and_Agency__Beginning_1990.csv"</span>, <span class="at">header=</span><span class="cn">TRUE</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>observations <span class="ot">&lt;-</span> <span class="fu">nrow</span>(Indexcrimes)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>variables <span class="ot">&lt;-</span> <span class="fu">ncol</span>(Indexcrimes)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a small table</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>table_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">Dimension =</span> <span class="fu">c</span>(<span class="st">"No of Observations "</span>, <span class="st">"No of Variables"</span>),</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">Count =</span> <span class="fu">c</span>(observations, variables)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the knitr package</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the table in a visually appealing way</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(table_data, <span class="at">format =</span> <span class="st">"markdown"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
 <thead>
@@ -261,26 +241,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a href="https://data.ny.gov/Public-Safety/Adult-Arrests-18-and-Older-by-County-Beginning-197/rikd-mt35">Adult Arrests (18 and older) by County</a> :</p>
 <p>The dataset consists of crime data categorized into felonies and misdemeanors, detailing counts for various crime types, including drug-related offenses and Driving While Intoxicated (DWI). It spans multiple years and provides a comprehensive view of criminal activities across different categories in various counties.Each row represents a specific county and year combination, and columns contain different crime-related metrics.</p>
 <div class="cell">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>Adult_crimes <span class="ot">=</span>  <span class="fu">read.csv</span>(<span class="st">"C:/Users/DELL/Desktop/Columbia/Sem 1/EDAV/Final Project/Adult_Arrests_18_and_Older_by_County___Beginning_1970.csv"</span>, <span class="at">header=</span><span class="cn">TRUE</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>observations <span class="ot">&lt;-</span> <span class="fu">nrow</span>(Adult_crimes)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>variables <span class="ot">&lt;-</span> <span class="fu">ncol</span>(Adult_crimes)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a small table</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>table_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">Dimension =</span> <span class="fu">c</span>(<span class="st">"No of Observations "</span>, <span class="st">"No of Variables"</span>),</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">Count =</span> <span class="fu">c</span>(observations, variables)</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the knitr package</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the table in a visually appealing way</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(table_data, <span class="at">format =</span> <span class="st">"markdown"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
 <thead>
@@ -305,26 +265,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a href="https://data.ny.gov/Public-Safety/Hate-Crimes-by-County-and-Bias-Type-Beginning-2010/6xda-q7ev">Hate Crime by County and Bias Type</a> :</p>
 <p>The Hate Crime by County and Bias Type dataset includes information on hate crime incidents reported across 62 unique counties in New York from 2010 to 2022. It covers a range of attributes, such as crime type, race, color, national origin, ancestry, gender, religion, age, disability, and sexual orientation, providing detailed insights into the characteristics of reported incidents. The dataset records total incidents, victims, and offenders, offering a comprehensive view of hate crimes and bias types in the specified regions over the given period.</p>
 <div class="cell">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Hate_crimes <span class="ot">=</span>  <span class="fu">read.csv</span>(<span class="st">"C:/Users/DELL/Desktop/Columbia/Sem 1/EDAV/Final Project/Hate_Crimes_by_County_and_Bias_Type__Beginning_2010.csv"</span>, <span class="at">header=</span><span class="cn">TRUE</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>observations <span class="ot">&lt;-</span> <span class="fu">nrow</span>(Hate_crimes)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>variables <span class="ot">&lt;-</span> <span class="fu">ncol</span>(Hate_crimes)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a small table</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>table_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">Dimension =</span> <span class="fu">c</span>(<span class="st">"No of Observations "</span>, <span class="st">"No of Variables"</span>),</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">Count =</span> <span class="fu">c</span>(observations, variables)</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the knitr package</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the table in a visually appealing way</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(table_data, <span class="at">format =</span> <span class="st">"markdown"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
 <thead>
@@ -349,26 +289,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a href="https://data.ny.gov/Public-Safety/Jail-Population-By-County-Beginning-1997/nymx-kgkn">Jail Population by County</a> :</p>
 <p>The Jail Population by County dataset spans 67 unique counties in New York from 1997 to 2022, providing insights into the average daily census, boarding status, and inmate categorization. Attributes like Sentenced, Civil, Federal, Technical Parole Violators, State Readies, and Other Unsentenced offer a nuanced understanding of the diverse inmate populations and their statuses within county facilities. This dataset contributes to a comprehensive analysis of the evolving dynamics of correctional populations over the years.</p>
 <div class="cell">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>JailPoplulation <span class="ot">=</span>  <span class="fu">read.csv</span>(<span class="st">"C:/Users/DELL/Desktop/Columbia/Sem 1/EDAV/Final Project/Jail_Population_By_County__Beginning_1997.csv"</span>, <span class="at">header=</span><span class="cn">TRUE</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>observations <span class="ot">&lt;-</span> <span class="fu">nrow</span>(JailPoplulation )</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>variables <span class="ot">&lt;-</span> <span class="fu">ncol</span>(JailPoplulation )</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a small table</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>table_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">Dimension =</span> <span class="fu">c</span>(<span class="st">"No of Observations "</span>, <span class="st">"No of Variables"</span>),</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">Count =</span> <span class="fu">c</span>(observations, variables)</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the knitr package</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the table in a visually appealing way</span></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(table_data, <span class="at">format =</span> <span class="st">"markdown"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
 <thead>
@@ -390,15 +310,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 </div>
 </div>
-<section id="data-frequency" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="data-frequency"><span class="header-section-number">2.1</span> Data Frequency :</h2>
+</section>
+<section id="data-frequency" class="level3" data-number="2.1.2">
+<h3 data-number="2.1.2" class="anchored" data-anchor-id="data-frequency"><span class="header-section-number">2.1.2</span> Data Frequency</h3>
 <p>Each dataset, including Hate Crime by County and Bias Type, Adult Arrests by County, Index Crimes by County and Agency, and Jail Population by County, is updated on a yearly basis, providing an annual snapshot of the respective categories. This consistent yearly frequency enables a longitudinal analysis, offering insights into the trends and variations in these datasets over time by county.</p>
 </section>
-<section id="data-format" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="data-format"><span class="header-section-number">2.2</span> Data Format :</h2>
+<section id="data-format" class="level3" data-number="2.1.3">
+<h3 data-number="2.1.3" class="anchored" data-anchor-id="data-format"><span class="header-section-number">2.1.3</span> Data Format</h3>
 <p>Note: For a comprehensive understanding of the Format of the dataset, it is advisable to refer to the metadata in the link below : <a href="https://docs.google.com/document/d/1BqYf52WOzPXsHwssMj_gBQLIXI4HaXJCcglg4L1_ivc/edit?usp=sharing">Data set Description</a></p>
-<section id="research-plan" class="level3" data-number="2.2.1">
-<h3 data-number="2.2.1" class="anchored" data-anchor-id="research-plan"><span class="header-section-number">2.2.1</span> Research Plan :</h3>
+</section>
+</section>
+<section id="research-plan" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="research-plan"><span class="header-section-number">2.2</span> Research Plan</h2>
 <p>Regional Disparities: Understanding the significant variations in crime rates across different counties and regions in New York</p>
 <p>Crime Type Analysis: Analyzing the crimes exhibited by notable trends or fluctuations. Understanding the prevalence of different offenses, such as violent crimes, property crimes, or specific criminal activities, is crucial for targeted intervention.Information on</p>
 <p>Law Enforcement Effectiveness: How effective have law enforcement agencies been in curbing specific types of crimes. Felony Breakdown, Misdemeanor Breakdown, type of felony (Drug, Violent, DWI, Other) and Misdemeanor.</p>
@@ -406,27 +329,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Hate Crimes : Includes analysis on demographics, religions, Ethnicity , sexual orientation , disabilities , incidents and victims.</p>
 <p>Impact of Societal Changes: Are there correlations between crime rates and broader societal changes, economic conditions, or demographic shifts.</p>
 </section>
-<section id="issues-with-the-data" class="level3" data-number="2.2.2">
-<h3 data-number="2.2.2" class="anchored" data-anchor-id="issues-with-the-data"><span class="header-section-number">2.2.2</span> Issues with the Data</h3>
+<section id="missing-value-analysis" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="missing-value-analysis"><span class="header-section-number">2.3</span> Missing Value Analysis</h2>
 <p>Major issues which we have faced are missing values :</p>
 <p>Index Crimes by County and Agency, where months’ data is absent, the chosen approach for addressing this issue is to opt for data exclusion.</p>
-</section>
-</section>
-<section id="handling-the-missing-values" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="handling-the-missing-values"><span class="header-section-number">2.3</span> Handling the missing values</h2>
+<section id="handling-the-missing-values" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="handling-the-missing-values"><span class="header-section-number">2.3.1</span> Handling the missing values</h3>
 <p>The decision has been made to drop observations with missing values. This strategy ensures transparency in the data handling process and prioritizes a dataset without gaps, contributing to more robust analyses. The rationale for this approach lies in maintaining the integrity of the temporal and categorical dimensions of the data for comprehensive insights.</p>
-<section id="missing-value-analysis" class="level3" data-number="2.3.1">
-<h3 data-number="2.3.1" class="anchored" data-anchor-id="missing-value-analysis"><span class="header-section-number">2.3.1</span> Missing value analysis</h3>
-</section>
-</section>
-<section id="jail-population-by-county" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="jail-population-by-county"><span class="header-section-number">2.4</span> Jail Population by County</h2>
+<section id="jail-population-by-county" class="level4" data-number="2.3.1.1">
+<h4 data-number="2.3.1.1" class="anchored" data-anchor-id="jail-population-by-county"><span class="header-section-number">2.3.1.1</span> Jail Population by County</h4>
 <div class="cell">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>jail_crime_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"C:/Users/DELL/Desktop/Columbia/Sem 1/EDAV/Final Project/Jail_Population_By_County__Beginning_1997.csv"</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">str</span>(jail_crime_data))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>'data.frame':   1723 obs. of  12 variables:
  $ Facility.Name..ORI.       : chr  "All NYC Facilities" "All NYC Facilities" "All NYC Facilities" "All NYC Facilities" ...
@@ -447,96 +359,593 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="adult-crimes-by-county-bias" class="level2" data-number="2.5">
-<h2 data-number="2.5" class="anchored" data-anchor-id="adult-crimes-by-county-bias"><span class="header-section-number">2.5</span> Adult Crimes By County &amp; Bias</h2>
+<section id="adult-crimes-by-county-bias" class="level4" data-number="2.3.1.2">
+<h4 data-number="2.3.1.2" class="anchored" data-anchor-id="adult-crimes-by-county-bias"><span class="header-section-number">2.3.1.2</span> Adult Crimes By County &amp; Bias</h4>
 <div class="cell">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>adult_crime_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"C:/Users/DELL/Desktop/Columbia/Sem 1/EDAV/Final Project/Adult_Arrests_18_and_Older_by_County___Beginning_1970.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<div class="cell">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>hate_crime_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"C:/Users/DELL/Desktop/Columbia/Sem 1/EDAV/Final Project/Hate_Crimes_by_County_and_Bias_Type__Beginning_2010.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<div class="cell">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>complete_percentage1 <span class="ot">&lt;-</span> <span class="fu">colMeans</span>(<span class="sc">!</span><span class="fu">is.na</span>(jail_crime_data)) <span class="sc">*</span> <span class="dv">100</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>complete_percentage2 <span class="ot">&lt;-</span> <span class="fu">colMeans</span>(<span class="sc">!</span><span class="fu">is.na</span>(hate_crime_data)) <span class="sc">*</span> <span class="dv">100</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>complete_percentage3 <span class="ot">&lt;-</span> <span class="fu">colMeans</span>(<span class="sc">!</span><span class="fu">is.na</span>(adult_crime_data)) <span class="sc">*</span> <span class="dv">100</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating data frames for ggplot</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>data1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">columns =</span> <span class="fu">names</span>(complete_percentage1), <span class="at">completeness =</span> complete_percentage1, <span class="at">dataset =</span> <span class="st">"Jail Dataset"</span>)</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>data2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">columns =</span> <span class="fu">names</span>(complete_percentage2), <span class="at">completeness =</span> complete_percentage2, <span class="at">dataset =</span> <span class="st">"Hate Dataset "</span>)</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>data3 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">columns =</span> <span class="fu">names</span>(complete_percentage3), <span class="at">completeness =</span> complete_percentage3, <span class="at">dataset =</span> <span class="st">"Adult Crime Dataset"</span>)</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine data frames</span></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>combined_data <span class="ot">&lt;-</span> <span class="fu">rbind</span>(data1, data2, data3)</span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Sorting the values</span></span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>combined_data <span class="ot">&lt;-</span> combined_data[<span class="fu">order</span>(combined_data<span class="sc">$</span>completeness, <span class="at">decreasing =</span> <span class="cn">TRUE</span>), ]</span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating bar plots with ggplot and subplots</span></span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(combined_data, <span class="fu">aes</span>(<span class="at">x =</span> columns, <span class="at">y =</span> completeness, <span class="at">fill =</span> columns)) <span class="sc">+</span></span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Percentage of Non-Missing Values by Column"</span>,</span>
-<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Columns"</span>, <span class="at">y =</span> <span class="st">"Completeness (%)"</span>) <span class="sc">+</span></span>
-<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> dataset, <span class="at">scales =</span> <span class="st">"free"</span>) <span class="sc">+</span></span>
-<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output-display">
-<p><img src="data_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 1%">
+<col style="width: 7%">
+<col style="width: 5%">
+<col style="width: 7%">
+<col style="width: 6%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 6%">
+<col style="width: 7%">
+<col style="width: 8%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 9%">
+<col style="width: 8%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">County</th>
+<th style="text-align: left;">Year</th>
+<th style="text-align: left;">Total</th>
+<th style="text-align: left;">Felony.Total</th>
+<th style="text-align: left;">Drug.Felony</th>
+<th style="text-align: left;">Violent.Felony</th>
+<th style="text-align: left;">DWI.Felony</th>
+<th style="text-align: left;">Other.Felony</th>
+<th style="text-align: left;">Misdemeanor.Total</th>
+<th style="text-align: left;">Drug.Misdemeanor</th>
+<th style="text-align: left;">DWI.Misdemeanor</th>
+<th style="text-align: left;">Property.Misdemeanor</th>
+<th style="text-align: left;">Other.Misdemeanor</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Length:3286</td>
+<td style="text-align: left;">Min. :1970</td>
+<td style="text-align: left;">Min. : 22.0</td>
+<td style="text-align: left;">Min. : 6</td>
+<td style="text-align: left;">Min. : 0.0</td>
+<td style="text-align: left;">Min. : 0.0</td>
+<td style="text-align: left;">Min. : 0.00</td>
+<td style="text-align: left;">Min. : 1.0</td>
+<td style="text-align: left;">Min. : 7</td>
+<td style="text-align: left;">Min. : 0.0</td>
+<td style="text-align: left;">Min. : 0.0</td>
+<td style="text-align: left;">Min. : 0.0</td>
+<td style="text-align: left;">Min. : 1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Class :character</td>
+<td style="text-align: left;">1st Qu.:1983</td>
+<td style="text-align: left;">1st Qu.: 867.2</td>
+<td style="text-align: left;">1st Qu.: 191</td>
+<td style="text-align: left;">1st Qu.: 19.0</td>
+<td style="text-align: left;">1st Qu.: 39.0</td>
+<td style="text-align: left;">1st Qu.: 17.00</td>
+<td style="text-align: left;">1st Qu.: 104.0</td>
+<td style="text-align: left;">1st Qu.: 662</td>
+<td style="text-align: left;">1st Qu.: 25.0</td>
+<td style="text-align: left;">1st Qu.: 178.0</td>
+<td style="text-align: left;">1st Qu.: 154.0</td>
+<td style="text-align: left;">1st Qu.: 241</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Mode :character</td>
+<td style="text-align: left;">Median :1996</td>
+<td style="text-align: left;">Median : 1516.0</td>
+<td style="text-align: left;">Median : 368</td>
+<td style="text-align: left;">Median : 49.5</td>
+<td style="text-align: left;">Median : 77.0</td>
+<td style="text-align: left;">Median : 37.00</td>
+<td style="text-align: left;">Median : 197.5</td>
+<td style="text-align: left;">Median : 1180</td>
+<td style="text-align: left;">Median : 72.0</td>
+<td style="text-align: left;">Median : 328.0</td>
+<td style="text-align: left;">Median : 322.0</td>
+<td style="text-align: left;">Median : 454</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Mean :1996</td>
+<td style="text-align: left;">Mean : 6572.3</td>
+<td style="text-align: left;">Mean : 2250</td>
+<td style="text-align: left;">Mean : 492.8</td>
+<td style="text-align: left;">Mean : 688.2</td>
+<td style="text-align: left;">Mean : 66.91</td>
+<td style="text-align: left;">Mean : 1002.5</td>
+<td style="text-align: left;">Mean : 4322</td>
+<td style="text-align: left;">Mean : 859.7</td>
+<td style="text-align: left;">Mean : 616.4</td>
+<td style="text-align: left;">Mean : 1317.2</td>
+<td style="text-align: left;">Mean : 1529</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">3rd Qu.:2009</td>
+<td style="text-align: left;">3rd Qu.: 4198.2</td>
+<td style="text-align: left;">3rd Qu.: 1102</td>
+<td style="text-align: left;">3rd Qu.: 183.8</td>
+<td style="text-align: left;">3rd Qu.: 264.8</td>
+<td style="text-align: left;">3rd Qu.: 76.00</td>
+<td style="text-align: left;">3rd Qu.: 579.8</td>
+<td style="text-align: left;">3rd Qu.: 3034</td>
+<td style="text-align: left;">3rd Qu.: 252.8</td>
+<td style="text-align: left;">3rd Qu.: 666.0</td>
+<td style="text-align: left;">3rd Qu.: 836.8</td>
+<td style="text-align: left;">3rd Qu.: 1167</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Max. :2022</td>
+<td style="text-align: left;">Max. :107786.0</td>
+<td style="text-align: left;">Max. :44632</td>
+<td style="text-align: left;">Max. :17442.0</td>
+<td style="text-align: left;">Max. :16217.0</td>
+<td style="text-align: left;">Max. :613.00</td>
+<td style="text-align: left;">Max. :15467.0</td>
+<td style="text-align: left;">Max. :73365</td>
+<td style="text-align: left;">Max. :29471.0</td>
+<td style="text-align: left;">Max. :8954.0</td>
+<td style="text-align: left;">Max. :33334.0</td>
+<td style="text-align: left;">Max. :24875</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </section>
-<section id="adult-arrests-18-and-older-by-county" class="level2" data-number="2.6">
-<h2 data-number="2.6" class="anchored" data-anchor-id="adult-arrests-18-and-older-by-county"><span class="header-section-number">2.6</span> Adult Arrests (18 and older) by County</h2>
+<section id="hate-crime-by-county-and-bias-type" class="level4" data-number="2.3.1.3">
+<h4 data-number="2.3.1.3" class="anchored" data-anchor-id="hate-crime-by-county-and-bias-type"><span class="header-section-number">2.3.1.3</span> Hate Crime by County and Bias Type</h4>
 <div class="cell">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(naniar)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'naniar' was built under R version 4.3.2</code></pre>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 0%">
+<col style="width: 1%">
+<col style="width: 1%">
+<col style="width: 1%">
+<col style="width: 1%">
+<col style="width: 1%">
+<col style="width: 1%">
+<col style="width: 2%">
+<col style="width: 1%">
+<col style="width: 1%">
+<col style="width: 1%">
+<col style="width: 3%">
+<col style="width: 1%">
+<col style="width: 4%">
+<col style="width: 2%">
+<col style="width: 1%">
+<col style="width: 1%">
+<col style="width: 1%">
+<col style="width: 1%">
+<col style="width: 2%">
+<col style="width: 3%">
+<col style="width: 2%">
+<col style="width: 3%">
+<col style="width: 2%">
+<col style="width: 1%">
+<col style="width: 4%">
+<col style="width: 1%">
+<col style="width: 2%">
+<col style="width: 1%">
+<col style="width: 2%">
+<col style="width: 1%">
+<col style="width: 1%">
+<col style="width: 1%">
+<col style="width: 4%">
+<col style="width: 2%">
+<col style="width: 1%">
+<col style="width: 1%">
+<col style="width: 2%">
+<col style="width: 1%">
+<col style="width: 1%">
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 1%">
+<col style="width: 1%">
+<col style="width: 1%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">County</th>
+<th style="text-align: left;">Year</th>
+<th style="text-align: left;">Crime.Type</th>
+<th style="text-align: left;">Anti.Male</th>
+<th style="text-align: left;">Anti.Female</th>
+<th style="text-align: left;">Anti.Transgender</th>
+<th style="text-align: left;">Anti.Gender.Non.Conforming</th>
+<th style="text-align: left;">Anti.Age.</th>
+<th style="text-align: left;">Anti.White</th>
+<th style="text-align: left;">Anti.Black</th>
+<th style="text-align: left;">Anti.American.Indian.Alaskan.Native</th>
+<th style="text-align: left;">Anti.Asian</th>
+<th style="text-align: left;">Anti.Native.Hawaiian.Pacific.Islander</th>
+<th style="text-align: left;">Anti.Multi.Racial.Groups</th>
+<th style="text-align: left;">Anti.Other.Race</th>
+<th style="text-align: left;">Anti.Jewish</th>
+<th style="text-align: left;">Anti.Catholic</th>
+<th style="text-align: left;">Anti.Protestant</th>
+<th style="text-align: left;">Anti.Islamic..Muslim.</th>
+<th style="text-align: left;">Anti.Multi.Religious.Groups</th>
+<th style="text-align: left;">Anti.Atheism.Agnosticism</th>
+<th style="text-align: left;">Anti.Religious.Practice.Generally</th>
+<th style="text-align: left;">Anti.Other.Religion</th>
+<th style="text-align: left;">Anti.Buddhist</th>
+<th style="text-align: left;">Anti.Eastern.Orthodox..Greek..Russian..etc..</th>
+<th style="text-align: left;">Anti.Hindu</th>
+<th style="text-align: left;">Anti.Jehovahs.Witness</th>
+<th style="text-align: left;">Anti.Mormon</th>
+<th style="text-align: left;">Anti.Other.Christian</th>
+<th style="text-align: left;">Anti.Sikh</th>
+<th style="text-align: left;">Anti.Hispanic</th>
+<th style="text-align: left;">Anti.Arab</th>
+<th style="text-align: left;">Anti.Other.Ethnicity.National.Origin</th>
+<th style="text-align: left;">Anti.Non.Hispanic.</th>
+<th style="text-align: left;">Anti.Gay.Male</th>
+<th style="text-align: left;">Anti.Gay.Female</th>
+<th style="text-align: left;">Anti.Gay..Male.and.Female.</th>
+<th style="text-align: left;">Anti.Heterosexual</th>
+<th style="text-align: left;">Anti.Bisexual</th>
+<th style="text-align: left;">Anti.Physical.Disability</th>
+<th style="text-align: left;">Anti.Mental.Disability</th>
+<th style="text-align: left;">Total.Incidents</th>
+<th style="text-align: left;">Total.Victims</th>
+<th style="text-align: left;">Total.Offenders</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Length:822</td>
+<td style="text-align: left;">Min. :2010</td>
+<td style="text-align: left;">Length:822</td>
+<td style="text-align: left;">Min. :0.000000</td>
+<td style="text-align: left;">Min. :0.0000</td>
+<td style="text-align: left;">Min. :0.0000</td>
+<td style="text-align: left;">Min. :0.00000</td>
+<td style="text-align: left;">Min. :0.0000</td>
+<td style="text-align: left;">Min. : 0.000</td>
+<td style="text-align: left;">Min. : 0.000</td>
+<td style="text-align: left;">Min. :0.000000</td>
+<td style="text-align: left;">Min. : 0.0000</td>
+<td style="text-align: left;">Min. :0</td>
+<td style="text-align: left;">Min. :0.00000</td>
+<td style="text-align: left;">Min. :0</td>
+<td style="text-align: left;">Min. : 0.000</td>
+<td style="text-align: left;">Min. : 0.0000</td>
+<td style="text-align: left;">Min. :0.00000</td>
+<td style="text-align: left;">Min. : 0.000</td>
+<td style="text-align: left;">Min. : 0.00000</td>
+<td style="text-align: left;">Min. :0</td>
+<td style="text-align: left;">Min. :0.000000</td>
+<td style="text-align: left;">Min. :0.00000</td>
+<td style="text-align: left;">Min. :0.00000</td>
+<td style="text-align: left;">Min. :0.00000</td>
+<td style="text-align: left;">Min. :0.00000</td>
+<td style="text-align: left;">Min. :0.00000</td>
+<td style="text-align: left;">Min. :0.000000</td>
+<td style="text-align: left;">Min. :0.00000</td>
+<td style="text-align: left;">Min. :0.000000</td>
+<td style="text-align: left;">Min. : 0.0000</td>
+<td style="text-align: left;">Min. :0.00000</td>
+<td style="text-align: left;">Min. : 0.0000</td>
+<td style="text-align: left;">Min. :0</td>
+<td style="text-align: left;">Min. : 0.00</td>
+<td style="text-align: left;">Min. :0.0000</td>
+<td style="text-align: left;">Min. :0.0000</td>
+<td style="text-align: left;">Min. :0.000000</td>
+<td style="text-align: left;">Min. :0.000000</td>
+<td style="text-align: left;">Min. :0.00000</td>
+<td style="text-align: left;">Min. :0.000000</td>
+<td style="text-align: left;">Min. : 1.00</td>
+<td style="text-align: left;">Min. : 1.00</td>
+<td style="text-align: left;">Min. : 1.00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Class :character</td>
+<td style="text-align: left;">1st Qu.:2013</td>
+<td style="text-align: left;">Class :character</td>
+<td style="text-align: left;">1st Qu.:0.000000</td>
+<td style="text-align: left;">1st Qu.:0.0000</td>
+<td style="text-align: left;">1st Qu.:0.0000</td>
+<td style="text-align: left;">1st Qu.:0.00000</td>
+<td style="text-align: left;">1st Qu.:0.0000</td>
+<td style="text-align: left;">1st Qu.: 0.000</td>
+<td style="text-align: left;">1st Qu.: 0.000</td>
+<td style="text-align: left;">1st Qu.:0.000000</td>
+<td style="text-align: left;">1st Qu.: 0.0000</td>
+<td style="text-align: left;">1st Qu.:0</td>
+<td style="text-align: left;">1st Qu.:0.00000</td>
+<td style="text-align: left;">1st Qu.:0</td>
+<td style="text-align: left;">1st Qu.: 0.000</td>
+<td style="text-align: left;">1st Qu.: 0.0000</td>
+<td style="text-align: left;">1st Qu.:0.00000</td>
+<td style="text-align: left;">1st Qu.: 0.000</td>
+<td style="text-align: left;">1st Qu.: 0.00000</td>
+<td style="text-align: left;">1st Qu.:0</td>
+<td style="text-align: left;">1st Qu.:0.000000</td>
+<td style="text-align: left;">1st Qu.:0.00000</td>
+<td style="text-align: left;">1st Qu.:0.00000</td>
+<td style="text-align: left;">1st Qu.:0.00000</td>
+<td style="text-align: left;">1st Qu.:0.00000</td>
+<td style="text-align: left;">1st Qu.:0.00000</td>
+<td style="text-align: left;">1st Qu.:0.000000</td>
+<td style="text-align: left;">1st Qu.:0.00000</td>
+<td style="text-align: left;">1st Qu.:0.000000</td>
+<td style="text-align: left;">1st Qu.: 0.0000</td>
+<td style="text-align: left;">1st Qu.:0.00000</td>
+<td style="text-align: left;">1st Qu.: 0.0000</td>
+<td style="text-align: left;">1st Qu.:0</td>
+<td style="text-align: left;">1st Qu.: 0.00</td>
+<td style="text-align: left;">1st Qu.:0.0000</td>
+<td style="text-align: left;">1st Qu.:0.0000</td>
+<td style="text-align: left;">1st Qu.:0.000000</td>
+<td style="text-align: left;">1st Qu.:0.000000</td>
+<td style="text-align: left;">1st Qu.:0.00000</td>
+<td style="text-align: left;">1st Qu.:0.000000</td>
+<td style="text-align: left;">1st Qu.: 1.00</td>
+<td style="text-align: left;">1st Qu.: 1.00</td>
+<td style="text-align: left;">1st Qu.: 1.00</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Mode :character</td>
+<td style="text-align: left;">Median :2016</td>
+<td style="text-align: left;">Mode :character</td>
+<td style="text-align: left;">Median :0.000000</td>
+<td style="text-align: left;">Median :0.0000</td>
+<td style="text-align: left;">Median :0.0000</td>
+<td style="text-align: left;">Median :0.00000</td>
+<td style="text-align: left;">Median :0.0000</td>
+<td style="text-align: left;">Median : 0.000</td>
+<td style="text-align: left;">Median : 1.000</td>
+<td style="text-align: left;">Median :0.000000</td>
+<td style="text-align: left;">Median : 0.0000</td>
+<td style="text-align: left;">Median :0</td>
+<td style="text-align: left;">Median :0.00000</td>
+<td style="text-align: left;">Median :0</td>
+<td style="text-align: left;">Median : 0.000</td>
+<td style="text-align: left;">Median : 0.0000</td>
+<td style="text-align: left;">Median :0.00000</td>
+<td style="text-align: left;">Median : 0.000</td>
+<td style="text-align: left;">Median : 0.00000</td>
+<td style="text-align: left;">Median :0</td>
+<td style="text-align: left;">Median :0.000000</td>
+<td style="text-align: left;">Median :0.00000</td>
+<td style="text-align: left;">Median :0.00000</td>
+<td style="text-align: left;">Median :0.00000</td>
+<td style="text-align: left;">Median :0.00000</td>
+<td style="text-align: left;">Median :0.00000</td>
+<td style="text-align: left;">Median :0.000000</td>
+<td style="text-align: left;">Median :0.00000</td>
+<td style="text-align: left;">Median :0.000000</td>
+<td style="text-align: left;">Median : 0.0000</td>
+<td style="text-align: left;">Median :0.00000</td>
+<td style="text-align: left;">Median : 0.0000</td>
+<td style="text-align: left;">Median :0</td>
+<td style="text-align: left;">Median : 0.00</td>
+<td style="text-align: left;">Median :0.0000</td>
+<td style="text-align: left;">Median :0.0000</td>
+<td style="text-align: left;">Median :0.000000</td>
+<td style="text-align: left;">Median :0.000000</td>
+<td style="text-align: left;">Median :0.00000</td>
+<td style="text-align: left;">Median :0.000000</td>
+<td style="text-align: left;">Median : 3.00</td>
+<td style="text-align: left;">Median : 3.00</td>
+<td style="text-align: left;">Median : 3.00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Mean :2016</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Mean :0.006083</td>
+<td style="text-align: left;">Mean :0.0219</td>
+<td style="text-align: left;">Mean :0.1436</td>
+<td style="text-align: left;">Mean :0.03893</td>
+<td style="text-align: left;">Mean :0.0365</td>
+<td style="text-align: left;">Mean : 0.365</td>
+<td style="text-align: left;">Mean : 1.765</td>
+<td style="text-align: left;">Mean :0.006083</td>
+<td style="text-align: left;">Mean : 0.4501</td>
+<td style="text-align: left;">Mean :0</td>
+<td style="text-align: left;">Mean :0.07908</td>
+<td style="text-align: left;">Mean :0</td>
+<td style="text-align: left;">Mean : 4.062</td>
+<td style="text-align: left;">Mean : 0.2092</td>
+<td style="text-align: left;">Mean :0.01582</td>
+<td style="text-align: left;">Mean : 0.382</td>
+<td style="text-align: left;">Mean : 0.05475</td>
+<td style="text-align: left;">Mean :0</td>
+<td style="text-align: left;">Mean :0.009732</td>
+<td style="text-align: left;">Mean :0.07056</td>
+<td style="text-align: left;">Mean :0.00365</td>
+<td style="text-align: left;">Mean :0.00365</td>
+<td style="text-align: left;">Mean :0.01095</td>
+<td style="text-align: left;">Mean :0.00365</td>
+<td style="text-align: left;">Mean :0.001216</td>
+<td style="text-align: left;">Mean :0.02433</td>
+<td style="text-align: left;">Mean :0.006083</td>
+<td style="text-align: left;">Mean : 0.3151</td>
+<td style="text-align: left;">Mean :0.08151</td>
+<td style="text-align: left;">Mean : 0.3078</td>
+<td style="text-align: left;">Mean :0</td>
+<td style="text-align: left;">Mean : 1.26</td>
+<td style="text-align: left;">Mean :0.1764</td>
+<td style="text-align: left;">Mean :0.1095</td>
+<td style="text-align: left;">Mean :0.001216</td>
+<td style="text-align: left;">Mean :0.004866</td>
+<td style="text-align: left;">Mean :0.01217</td>
+<td style="text-align: left;">Mean :0.006083</td>
+<td style="text-align: left;">Mean : 10.04</td>
+<td style="text-align: left;">Mean : 10.41</td>
+<td style="text-align: left;">Mean : 11.33</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">3rd Qu.:2020</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">3rd Qu.:0.000000</td>
+<td style="text-align: left;">3rd Qu.:0.0000</td>
+<td style="text-align: left;">3rd Qu.:0.0000</td>
+<td style="text-align: left;">3rd Qu.:0.00000</td>
+<td style="text-align: left;">3rd Qu.:0.0000</td>
+<td style="text-align: left;">3rd Qu.: 0.000</td>
+<td style="text-align: left;">3rd Qu.: 2.000</td>
+<td style="text-align: left;">3rd Qu.:0.000000</td>
+<td style="text-align: left;">3rd Qu.: 0.0000</td>
+<td style="text-align: left;">3rd Qu.:0</td>
+<td style="text-align: left;">3rd Qu.:0.00000</td>
+<td style="text-align: left;">3rd Qu.:0</td>
+<td style="text-align: left;">3rd Qu.: 3.000</td>
+<td style="text-align: left;">3rd Qu.: 0.0000</td>
+<td style="text-align: left;">3rd Qu.:0.00000</td>
+<td style="text-align: left;">3rd Qu.: 0.000</td>
+<td style="text-align: left;">3rd Qu.: 0.00000</td>
+<td style="text-align: left;">3rd Qu.:0</td>
+<td style="text-align: left;">3rd Qu.:0.000000</td>
+<td style="text-align: left;">3rd Qu.:0.00000</td>
+<td style="text-align: left;">3rd Qu.:0.00000</td>
+<td style="text-align: left;">3rd Qu.:0.00000</td>
+<td style="text-align: left;">3rd Qu.:0.00000</td>
+<td style="text-align: left;">3rd Qu.:0.00000</td>
+<td style="text-align: left;">3rd Qu.:0.000000</td>
+<td style="text-align: left;">3rd Qu.:0.00000</td>
+<td style="text-align: left;">3rd Qu.:0.000000</td>
+<td style="text-align: left;">3rd Qu.: 0.0000</td>
+<td style="text-align: left;">3rd Qu.:0.00000</td>
+<td style="text-align: left;">3rd Qu.: 0.0000</td>
+<td style="text-align: left;">3rd Qu.:0</td>
+<td style="text-align: left;">3rd Qu.: 1.00</td>
+<td style="text-align: left;">3rd Qu.:0.0000</td>
+<td style="text-align: left;">3rd Qu.:0.0000</td>
+<td style="text-align: left;">3rd Qu.:0.000000</td>
+<td style="text-align: left;">3rd Qu.:0.000000</td>
+<td style="text-align: left;">3rd Qu.:0.00000</td>
+<td style="text-align: left;">3rd Qu.:0.000000</td>
+<td style="text-align: left;">3rd Qu.: 9.00</td>
+<td style="text-align: left;">3rd Qu.: 10.00</td>
+<td style="text-align: left;">3rd Qu.: 11.00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Max. :2022</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Max. :1.000000</td>
+<td style="text-align: left;">Max. :6.0000</td>
+<td style="text-align: left;">Max. :8.0000</td>
+<td style="text-align: left;">Max. :3.00000</td>
+<td style="text-align: left;">Max. :9.0000</td>
+<td style="text-align: left;">Max. :16.000</td>
+<td style="text-align: left;">Max. :18.000</td>
+<td style="text-align: left;">Max. :1.000000</td>
+<td style="text-align: left;">Max. :68.0000</td>
+<td style="text-align: left;">Max. :0</td>
+<td style="text-align: left;">Max. :4.00000</td>
+<td style="text-align: left;">Max. :0</td>
+<td style="text-align: left;">Max. :90.000</td>
+<td style="text-align: left;">Max. :12.0000</td>
+<td style="text-align: left;">Max. :1.00000</td>
+<td style="text-align: left;">Max. :10.000</td>
+<td style="text-align: left;">Max. :10.00000</td>
+<td style="text-align: left;">Max. :0</td>
+<td style="text-align: left;">Max. :2.000000</td>
+<td style="text-align: left;">Max. :4.00000</td>
+<td style="text-align: left;">Max. :1.00000</td>
+<td style="text-align: left;">Max. :1.00000</td>
+<td style="text-align: left;">Max. :3.00000</td>
+<td style="text-align: left;">Max. :1.00000</td>
+<td style="text-align: left;">Max. :1.000000</td>
+<td style="text-align: left;">Max. :4.00000</td>
+<td style="text-align: left;">Max. :3.000000</td>
+<td style="text-align: left;">Max. :17.0000</td>
+<td style="text-align: left;">Max. :4.00000</td>
+<td style="text-align: left;">Max. :21.0000</td>
+<td style="text-align: left;">Max. :0</td>
+<td style="text-align: left;">Max. :36.00</td>
+<td style="text-align: left;">Max. :8.0000</td>
+<td style="text-align: left;">Max. :6.0000</td>
+<td style="text-align: left;">Max. :1.000000</td>
+<td style="text-align: left;">Max. :2.000000</td>
+<td style="text-align: left;">Max. :1.00000</td>
+<td style="text-align: left;">Max. :1.000000</td>
+<td style="text-align: left;">Max. :148.00</td>
+<td style="text-align: left;">Max. :148.00</td>
+<td style="text-align: left;">Max. :160.00</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </section>
-<section id="index-crimes-by-county-and-agency" class="level2" data-number="2.7">
-<h2 data-number="2.7" class="anchored" data-anchor-id="index-crimes-by-county-and-agency"><span class="header-section-number">2.7</span> Index Crimes by County and Agency</h2>
+<section id="adult-arrests-18-and-older-by-county" class="level4" data-number="2.3.1.4">
+<h4 data-number="2.3.1.4" class="anchored" data-anchor-id="adult-arrests-18-and-older-by-county"><span class="header-section-number">2.3.1.4</span> Adult Arrests (18 and older) by County</h4>
 <div class="cell">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(naniar)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">vis_miss</span>(Indexcrimes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   22048 obs. of  15 variables:
+ $ County             : chr  "Albany" "Albany" "Albany" "Albany" ...
+ $ Agency             : chr  "Albany City PD" "Albany County Park PD" "Albany County Sheriff" "Albany County State Police" ...
+ $ Year               : int  2022 2022 2022 2022 2022 2022 2022 2022 2022 2022 ...
+ $ Months.Reported    : int  12 12 12 12 12 12 12 12 12 NA ...
+ $ Index.Total        : int  4746 1 127 131 1 434 40 312 2860 9717 ...
+ $ Violent.Total      : int  944 0 11 42 0 24 8 48 122 1253 ...
+ $ Murder             : int  14 0 0 0 0 0 0 0 2 17 ...
+ $ Rape               : int  70 0 3 26 0 9 0 7 1 131 ...
+ $ Robbery            : int  233 0 1 5 0 5 3 6 45 305 ...
+ $ Aggravated.Assault : int  627 0 7 11 0 10 5 35 74 800 ...
+ $ Property.Total     : int  3802 1 116 89 1 410 32 264 2738 8464 ...
+ $ Burglary           : int  566 0 10 7 0 25 5 25 189 897 ...
+ $ Larceny            : int  2670 1 97 77 1 371 26 214 2448 6795 ...
+ $ Motor.Vehicle.Theft: int  566 0 9 5 0 14 1 25 101 772 ...
+ $ Region             : chr  "Non-New York City" "Non-New York City" "Non-New York City" "Non-New York City" ...</code></pre>
+</div>
+<div class="cell-output-display">
+
+</div>
+</div>
+<div class="cell">
 <div class="cell-output-display">
 <p><img src="data_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+</section>
+<section id="index-crimes-by-county-and-agency" class="level4" data-number="2.3.1.5">
+<h4 data-number="2.3.1.5" class="anchored" data-anchor-id="index-crimes-by-county-and-agency"><span class="header-section-number">2.3.1.5</span> Index Crimes by County and Agency</h4>
 <div class="cell">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(Indexcrimes,</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Region, <span class="at">y =</span> Months.Reported)) <span class="sc">+</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_miss_point</span>() <span class="sc">+</span> </span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output-display">
 <p><img src="data_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(Indexcrimes,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Region, <span class="at">y =</span> Months.Reported)) <span class="sc">+</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_miss_point</span>() <span class="sc">+</span> </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="data_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
 
 
+</section>
+</section>
 </section>
 
 </main> <!-- /main -->

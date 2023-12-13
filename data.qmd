@@ -1,16 +1,22 @@
 ### Data Description
 
+```{r,include=FALSE, echo=FALSE, comment=NA, message=FALSE, warning=FALSE}
+library(knitr)
+library(ggplot2)
+library(naniar)
+```
+
 We delve into the analysis of four pivotal datasets which has been collected from multiple sources – Hate Crime by County and Bias Type, Adult Arrests (18 and older) by County, Index Crimes by County and Agency, and Jail Population by County. Through these lenses, we seek to unravel the complexities of crime, justice, and societal biases that define the state of New York.
 
-
-##Data Dimensions 
+## Technical Description
+### Data Dimensions 
 
 [Index Crimes by County and Agency](https://data.ny.gov/Public-Safety/Index-Crimes-by-County-and-Agency-Beginning-1990/ca8h-8gj) :
 
 The crime data is categorized into violent and property crimes, providing insights into different aspects of criminal activity.
 The "Region" column classifies counties into either New York City or Non-New York City, allowing for regional comparisons.
 
-```{r}
+```{r,echo=FALSE, comment=NA, message=FALSE, warning=FALSE}
 Indexcrimes =  read.csv("C:/Users/DELL/Desktop/Columbia/Sem 1/EDAV/Final Project/Index_Crimes_by_County_and_Agency__Beginning_1990.csv", header=TRUE)
 
 
@@ -22,10 +28,6 @@ table_data <- data.frame(
   Dimension = c("No of Observations ", "No of Variables"),
   Count = c(observations, variables)
 )
-
-# Load the knitr package
-library(knitr)
-
 # Print the table in a visually appealing way
 kable(table_data, format = "markdown")
 
@@ -34,7 +36,7 @@ kable(table_data, format = "markdown")
 
 The dataset consists of crime data categorized into felonies and misdemeanors, detailing counts for various crime types, including drug-related offenses and Driving While Intoxicated (DWI). It spans multiple years and provides a comprehensive view of criminal activities across different categories in various counties.Each row represents a specific county and year combination, and columns contain different crime-related metrics.
 
-```{r}
+```{r, echo=FALSE, comment=NA, message=FALSE, warning=FALSE}
 Adult_crimes =  read.csv("C:/Users/DELL/Desktop/Columbia/Sem 1/EDAV/Final Project/Adult_Arrests_18_and_Older_by_County___Beginning_1970.csv", header=TRUE)
 
 
@@ -46,10 +48,6 @@ table_data <- data.frame(
   Dimension = c("No of Observations ", "No of Variables"),
   Count = c(observations, variables)
 )
-
-# Load the knitr package
-library(knitr)
-
 # Print the table in a visually appealing way
 kable(table_data, format = "markdown")
 
@@ -61,7 +59,7 @@ kable(table_data, format = "markdown")
 The Hate Crime by County and Bias Type dataset includes information on hate crime incidents reported across 62 unique counties in New York from 2010 to 2022. It covers a range of attributes, such as crime type, race, color, national origin, ancestry, gender, religion, age, disability, and sexual orientation, providing detailed insights into the characteristics of reported incidents. The dataset records total incidents, victims, and offenders, offering a comprehensive view of hate crimes and bias types in the specified regions over the given period.
 
 
-```{r}
+```{r, echo=FALSE, comment=NA, message=FALSE, warning=FALSE}
 Hate_crimes =  read.csv("C:/Users/DELL/Desktop/Columbia/Sem 1/EDAV/Final Project/Hate_Crimes_by_County_and_Bias_Type__Beginning_2010.csv", header=TRUE)
 
 
@@ -74,9 +72,6 @@ table_data <- data.frame(
   Count = c(observations, variables)
 )
 
-# Load the knitr package
-library(knitr)
-
 # Print the table in a visually appealing way
 kable(table_data, format = "markdown")
 
@@ -85,7 +80,7 @@ kable(table_data, format = "markdown")
 
 The Jail Population by County dataset spans 67 unique counties in New York from 1997 to 2022, providing insights into the average daily census, boarding status, and inmate categorization. Attributes like Sentenced, Civil, Federal, Technical Parole Violators, State Readies, and Other Unsentenced offer a nuanced understanding of the diverse inmate populations and their statuses within county facilities. This dataset contributes to a comprehensive analysis of the evolving dynamics of correctional populations over the years.
 
-```{r}
+```{r, echo=FALSE, comment=NA, message=FALSE, warning=FALSE}
 
 JailPoplulation =  read.csv("C:/Users/DELL/Desktop/Columbia/Sem 1/EDAV/Final Project/Jail_Population_By_County__Beginning_1997.csv", header=TRUE)
 
@@ -99,9 +94,6 @@ table_data <- data.frame(
   Count = c(observations, variables)
 )
 
-# Load the knitr package
-library(knitr)
-
 # Print the table in a visually appealing way
 kable(table_data, format = "markdown")
 
@@ -109,19 +101,19 @@ kable(table_data, format = "markdown")
 
 
 
-## Data Frequency : 
+### Data Frequency 
 Each dataset, including Hate Crime by County and Bias Type, Adult Arrests by County, Index Crimes by County and Agency, and Jail Population by County, is updated on a yearly basis, providing an annual snapshot of the respective categories. This consistent yearly frequency enables a longitudinal analysis, offering insights into the trends and variations in these datasets over time by county.
 
  
 
-## Data Format : 
+### Data Format
 
 Note: For a comprehensive understanding of the Format of the dataset, it is advisable to refer to the metadata in the link below :
 [Data set Description](https://docs.google.com/document/d/1BqYf52WOzPXsHwssMj_gBQLIXI4HaXJCcglg4L1_ivc/edit?usp=sharing)
 
 
 
-### Research Plan :
+## Research Plan
 
 Regional Disparities: Understanding the  significant variations in crime rates across different counties and regions in New York
 
@@ -137,42 +129,43 @@ Impact of Societal Changes: Are there correlations between crime rates and broad
 
 
 
-### Issues with the Data
+## Missing Value Analysis
 
 Major issues which we have faced are missing values : 
 
 Index Crimes by County and Agency, where months' data is absent, the chosen approach for addressing this issue is to opt for data exclusion. 
 
-## Handling the missing values
+### Handling the missing values
 
 The decision has been made to drop observations with missing values. This strategy ensures transparency in the data handling process and prioritizes a dataset without gaps, contributing to more robust analyses. The rationale for this approach lies in maintaining the integrity of the temporal and categorical dimensions of the data for comprehensive insights.
 
 
-
-
-### Missing value analysis
-
-## Jail Population by County
-```{r}
+#### Jail Population by County
+```{r, echo=FALSE, comment=NA, message=FALSE, warning=FALSE}
 jail_crime_data <- read.csv("C:/Users/DELL/Desktop/Columbia/Sem 1/EDAV/Final Project/Jail_Population_By_County__Beginning_1997.csv")
 knitr::kable(str(jail_crime_data))
 ```
 
-## Adult Crimes By County & Bias
-```{r}
-
+#### Adult Crimes By County & Bias
+```{r, echo=FALSE, comment=NA, message=FALSE, warning=FALSE}
 adult_crime_data <- read.csv("C:/Users/DELL/Desktop/Columbia/Sem 1/EDAV/Final Project/Adult_Arrests_18_and_Older_by_County___Beginning_1970.csv")
+knitr::kable(summary(adult_crime_data))
 ```
 
-```{r}
-
+#### Hate Crime by County and Bias Type
+```{r, echo=FALSE, comment=NA, message=FALSE, warning=FALSE}
 hate_crime_data <- read.csv("C:/Users/DELL/Desktop/Columbia/Sem 1/EDAV/Final Project/Hate_Crimes_by_County_and_Bias_Type__Beginning_2010.csv")
-
+knitr::kable(summary(hate_crime_data))
 ```
 
-```{r}
 
-library(ggplot2)
+#### Adult Arrests (18 and older) by County
+```{r, echo=FALSE, comment=NA, message=FALSE, warning=FALSE}
+adult_arrest_data <- read.csv("C:/Users/DELL/Desktop/Columbia/Sem 1/EDAV/Final Project/Index_Crimes_by_County_and_Agency__Beginning_1990.csv", header=TRUE)
+knitr::kable(str(adult_arrest_data))
+```
+
+```{r, echo=FALSE, comment=NA, message=FALSE, warning=FALSE}
 
 complete_percentage1 <- colMeans(!is.na(jail_crime_data)) * 100
 complete_percentage2 <- colMeans(!is.na(hate_crime_data)) * 100
@@ -200,31 +193,12 @@ ggplot(combined_data, aes(x = columns, y = completeness, fill = columns)) +
   theme(legend.position = "none")
 ```
 
-## Adult Arrests (18 and older) by County
-```{r}
-
-
-
-library(naniar)
-
-
-```
-
-
-
-## Index Crimes by County and Agency
-```{r}
-
-
-
-library(naniar)
+#### Index Crimes by County and Agency
+```{r,echo=FALSE, comment=NA, message=FALSE, warning=FALSE}
 vis_miss(Indexcrimes)
 ```
-```{r}
 
-library(ggplot2)
-
-
+```{r,echo=FALSE, comment=NA, message=FALSE, warning=FALSE}
 ggplot(Indexcrimes,
        aes(x = Region, y = Months.Reported)) +
   geom_miss_point() + 

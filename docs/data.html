@@ -148,9 +148,10 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#data-format" id="toc-data-format" class="nav-link" data-scroll-target="#data-format"><span class="header-section-number">2.1.3</span> Data Format</a></li>
   </ul></li>
   <li><a href="#research-plan" id="toc-research-plan" class="nav-link" data-scroll-target="#research-plan"><span class="header-section-number">2.2</span> Research Plan</a></li>
-  <li><a href="#missing-value-analysis" id="toc-missing-value-analysis" class="nav-link" data-scroll-target="#missing-value-analysis"><span class="header-section-number">2.3</span> Missing Value Analysis</a>
+  <li><a href="#our-consideration-of-period" id="toc-our-consideration-of-period" class="nav-link" data-scroll-target="#our-consideration-of-period"><span class="header-section-number">2.3</span> Our Consideration of Period</a></li>
+  <li><a href="#missing-value-analysis" id="toc-missing-value-analysis" class="nav-link" data-scroll-target="#missing-value-analysis"><span class="header-section-number">2.4</span> Missing Value Analysis</a>
   <ul class="collapse">
-  <li><a href="#handling-the-missing-values" id="toc-handling-the-missing-values" class="nav-link" data-scroll-target="#handling-the-missing-values"><span class="header-section-number">2.3.1</span> Handling the missing values</a></li>
+  <li><a href="#handling-the-missing-values" id="toc-handling-the-missing-values" class="nav-link" data-scroll-target="#handling-the-missing-values"><span class="header-section-number">2.4.1</span> Handling the missing values</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/Kanisha-Shah/NYC-Crimson-County-Insights/edit/main/data.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/Kanisha-Shah/NYC-Crimson-County-Insights/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
@@ -295,15 +296,25 @@ ul.task-list li input[type="checkbox"] {
 <p>Hate Crimes : Includes analysis on demographics, religions, Ethnicity , sexual orientation , disabilities , incidents and victims.</p>
 <p>Impact of Societal Changes: Are there correlations between crime rates and broader societal changes, economic conditions, or demographic shifts.</p>
 </section>
-<section id="missing-value-analysis" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="missing-value-analysis"><span class="header-section-number">2.3</span> Missing Value Analysis</h2>
+<section id="our-consideration-of-period" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="our-consideration-of-period"><span class="header-section-number">2.3</span> Our Consideration of Period</h2>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="data_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Now, let’s dive into the nitty-gritty of our project. Imagine a time machine whisking us through the years from 1970 to 2022, exploring how things have changed on the crime scene. <code>Picture this</code>: we’re in 1996, peeking into why adults are getting into trouble and landing in jail more often. Fast forward to 2022, and we’re mixing and matching different time periods to uncover how adult crimes and jail arrests have evolved.</p>
+<p>But our journey doesn’t stop there – we’re also digging into how hate crimes fit into the whole puzzle, especially during those times when arrests and crimes overlap. No fancy jargon, just a look at how things have shifted over the years. So, join us as we untangle this web of data, piece by piece!</p>
+</section>
+<section id="missing-value-analysis" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="missing-value-analysis"><span class="header-section-number">2.4</span> Missing Value Analysis</h2>
 <p>Major issues which we have faced are missing values :</p>
 <p>Index Crimes by County and Agency, where months’ data is absent, the chosen approach for addressing this issue is to opt for data exclusion.</p>
-<section id="handling-the-missing-values" class="level3" data-number="2.3.1">
-<h3 data-number="2.3.1" class="anchored" data-anchor-id="handling-the-missing-values"><span class="header-section-number">2.3.1</span> Handling the missing values</h3>
+<section id="handling-the-missing-values" class="level3" data-number="2.4.1">
+<h3 data-number="2.4.1" class="anchored" data-anchor-id="handling-the-missing-values"><span class="header-section-number">2.4.1</span> Handling the missing values</h3>
 <p>The decision has been made to drop observations with missing values. This strategy ensures transparency in the data handling process and prioritizes a dataset without gaps, contributing to more robust analyses. The rationale for this approach lies in maintaining the integrity of the temporal and categorical dimensions of the data for comprehensive insights.</p>
-<section id="jail-population-by-county" class="level4" data-number="2.3.1.1">
-<h4 data-number="2.3.1.1" class="anchored" data-anchor-id="jail-population-by-county"><span class="header-section-number">2.3.1.1</span> Jail Population by County</h4>
+<section id="jail-population-by-county" class="level4" data-number="2.4.1.1">
+<h4 data-number="2.4.1.1" class="anchored" data-anchor-id="jail-population-by-county"><span class="header-section-number">2.4.1.1</span> Jail Population by County</h4>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>'data.frame':   1723 obs. of  12 variables:
@@ -325,8 +336,8 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </section>
-<section id="adult-crimes-by-county-bias" class="level4" data-number="2.3.1.2">
-<h4 data-number="2.3.1.2" class="anchored" data-anchor-id="adult-crimes-by-county-bias"><span class="header-section-number">2.3.1.2</span> Adult Crimes By County &amp; Bias</h4>
+<section id="adult-crimes-by-county-bias" class="level4" data-number="2.4.1.2">
+<h4 data-number="2.4.1.2" class="anchored" data-anchor-id="adult-crimes-by-county-bias"><span class="header-section-number">2.4.1.2</span> Adult Crimes By County &amp; Bias</h4>
 <div class="cell">
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
@@ -466,8 +477,8 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </section>
-<section id="hate-crime-by-county-and-bias-type" class="level4" data-number="2.3.1.3">
-<h4 data-number="2.3.1.3" class="anchored" data-anchor-id="hate-crime-by-county-and-bias-type"><span class="header-section-number">2.3.1.3</span> Hate Crime by County and Bias Type</h4>
+<section id="hate-crime-by-county-and-bias-type" class="level4" data-number="2.4.1.3">
+<h4 data-number="2.4.1.3" class="anchored" data-anchor-id="hate-crime-by-county-and-bias-type"><span class="header-section-number">2.4.1.3</span> Hate Crime by County and Bias Type</h4>
 <div class="cell">
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
@@ -855,8 +866,8 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </section>
-<section id="adult-arrests-18-and-older-by-county" class="level4" data-number="2.3.1.4">
-<h4 data-number="2.3.1.4" class="anchored" data-anchor-id="adult-arrests-18-and-older-by-county"><span class="header-section-number">2.3.1.4</span> Adult Arrests (18 and older) by County</h4>
+<section id="adult-arrests-18-and-older-by-county" class="level4" data-number="2.4.1.4">
+<h4 data-number="2.4.1.4" class="anchored" data-anchor-id="adult-arrests-18-and-older-by-county"><span class="header-section-number">2.4.1.4</span> Adult Arrests (18 and older) by County</h4>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>'data.frame':   22048 obs. of  15 variables:
@@ -882,20 +893,20 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="data_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+<p><img src="data_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
-<section id="index-crimes-by-county-and-agency" class="level4" data-number="2.3.1.5">
-<h4 data-number="2.3.1.5" class="anchored" data-anchor-id="index-crimes-by-county-and-agency"><span class="header-section-number">2.3.1.5</span> Index Crimes by County and Agency</h4>
+<section id="index-crimes-by-county-and-agency" class="level4" data-number="2.4.1.5">
+<h4 data-number="2.4.1.5" class="anchored" data-anchor-id="index-crimes-by-county-and-agency"><span class="header-section-number">2.4.1.5</span> Index Crimes by County and Agency</h4>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="data_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+<p><img src="data_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="data_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+<p><img src="data_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 

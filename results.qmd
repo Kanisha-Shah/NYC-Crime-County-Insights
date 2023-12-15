@@ -760,6 +760,5 @@ plot_ly(felony_long, x = ~Mean_Value, y = ~reorder(County, Mean_Value),
          yaxis = list(title = "County"))
 
 
-
 ```
 

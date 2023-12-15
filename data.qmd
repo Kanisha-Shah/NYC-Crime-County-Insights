@@ -4,7 +4,7 @@
 library(knitr)
 library(ggplot2)
 library(naniar)
-library(knitr)
+library(htmltools)
 library(ggplot2)
 library(naniar)
 library(dplyr)
@@ -290,7 +290,8 @@ vis_miss(Indexcrimes)
 ```{r,echo=FALSE, comment=NA, message=FALSE, warning=FALSE}
 ggplot(Indexcrimes,
        aes(x = Region, y = Months.Reported)) +
-  geom_miss_point() + 
+  geom_miss_point() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   facet_wrap(~Year)
 
 ```

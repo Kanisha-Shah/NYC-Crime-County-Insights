@@ -108,9 +108,9 @@ Pivot_longer <- subset_df %>%
 gg = ggplot(Pivot_longer, aes(x = Region_type, y = Freq, fill = Category)) +
   geom_col(position = "stack") +
   facet_wrap(~Year) +
-  labs(title = "Stacked Bar Chart of Indexed Values (Violent and Property)",
+  labs(title = "Violent and Property Crimes Analysis",
        x = "Region",
-       y = "Indexed Crime",
+       y = "Crime",
        fill = "Facility Type") +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1)) +
   scale_y_continuous(labels = scales::comma)

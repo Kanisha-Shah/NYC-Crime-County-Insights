@@ -1,1 +1,420 @@
 # Results
+```{r,include=FALSE, echo=FALSE, comment=NA, message=FALSE, warning=FALSE}
+library(knitr)
+library(ggplot2)
+library(naniar)
+library(dplyr)
+library(scales)
+library(stringr)
+library(tidyr)
+library(plotly)
+```
+
+
+
+```{r, echo=FALSE, comment=NA, message=FALSE, warning=FALSE}
+# Jail Population by County
+jail_crime_data <- read.csv("C:/Users/DELL/Desktop/Columbia/Sem 1/EDAV/Final Project/Jail_Population_By_County__Beginning_1997.csv")
+```
+
+
+```{r, echo=FALSE, comment=NA, message=FALSE, warning=FALSE}
+#### Adult Crimes By County & Bias
+adult_crime_data <- read.csv("C:/Users/DELL/Desktop/Columbia/Sem 1/EDAV/Final Project/Adult_Arrests_18_and_Older_by_County___Beginning_1970.csv")
+```
+
+
+```{r, echo=FALSE, comment=NA, message=FALSE, warning=FALSE}
+#### Hate Crime by County and Bias Type
+hate_crime_data <- read.csv("C:/Users/DELL/Desktop/Columbia/Sem 1/EDAV/Final Project/Hate_Crimes_by_County_and_Bias_Type__Beginning_2010.csv")
+```
+
+
+
+```{r, echo=FALSE, comment=NA, message=FALSE, warning=FALSE}
+#### Adult Arrests (18 and older) by County
+adult_arrest_data <- read.csv("C:/Users/DELL/Desktop/Columbia/Sem 1/EDAV/Final Project/Index_Crimes_by_County_and_Agency__Beginning_1990.csv", header=TRUE)
+```
+
+
+```{r, echo=FALSE, comment=NA, message=FALSE, warning=FALSE}
+
+jail_crime_data <- jail_crime_data %>%
+  mutate(Facility.Name..ORI. = str_replace(Facility.Name..ORI., "County Jail", ""))
+
+jail_crime_data <- jail_crime_data %>%
+  filter(Facility.Name..ORI. != "All NYC Facilities" & Facility.Name..ORI. != "All Non-NYC Facilities")
+
+adult_arrest_data <- adult_arrest_data %>%
+  filter(Region !="Non-New York City")
+```
+
+
+```{r, echo=FALSE, comment=NA, message=FALSE, warning=FALSE}
+# Function to normalize and extract unique years
+normalize_and_extract <- function(data) {
+  data %>%
+    group_by(Year) %>%
+    summarise(Normalized_Value = n())
+}
+
+# Apply the function to each dataset
+jail_normalized <- normalize_and_extract(jail_crime_data)
+adult_arrest_normalized <- normalize_and_extract(adult_arrest_data)
+hate_crime_normalized <- normalize_and_extract(hate_crime_data)
+adult_crime_normalised <- normalize_and_extract(adult_crime_data)
+```
+
+```{r, echo=FALSE, comment=NA, message=FALSE, warning=FALSE}
+
+combined_normalized <- dplyr::bind_rows(
+  jail_normalized %>% mutate(Dataset = "Jail"),
+  adult_arrest_normalized %>% mutate(Dataset = "Adult Arrest"),
+  hate_crime_normalized %>% mutate(Dataset = "Hate Crime"),
+  adult_crime_normalised %>% mutate(Dataset = "Adult Crime")
+)
+
+# Create line plot
+ggplot(combined_normalized, aes(x = Year, y = Normalized_Value, color = Dataset)) +
+  geom_line() +
+  geom_point() +
+  labs(title = "Rescaled Values for Different Datasets",
+       x = "Year",
+       y = "Rescaled Value") +
+  theme(legend.position = "top")
+
+```
+
+```{r, echo=FALSE, comment=NA, message=FALSE, warning=FALSE}
+jail_crime_data_nyc_nonnyc <- read.csv("C:/Users/DELL/Desktop/Columbia/Sem 1/EDAV/Final Project/Jail_Population_By_County__Beginning_1997.csv")
+
+jail_crime_data_nyc_nonnyc <- jail_crime_data_nyc_nonnyc %>%
+  filter(Facility.Name..ORI. %in% c("All NYC Facilities", "All Non-NYC Facilities")) %>%
+  select('Facility.Name..ORI.','Year','Sentenced',	'Civil',	'Federal',	'Technical.Parole.Violators',	'State.Readies',	'Other.Unsentenced')
+```
+
+```{r}
+jail_crime_data_nyc_nonnyc <- jail_crime_data_nyc_nonnyc %>%
+  
+  filter(Year %in% unique(jail_crime_data_nyc_nonnyc$Year[jail_crime_data_nyc_nonnyc$Facility.Name..ORI. == "All NYC Facilities"]) &
+         Year %in% unique(jail_crime_data_nyc_nonnyc$Year[jail_crime_data_nyc_nonnyc$Facility.Name..ORI. == "All Non-NYC Facilities"]))
+
+```
+```{r,fig.width=20, fig.height=10}
+counts3 <- jail_crime_data_nyc_nonnyc %>%
+  pivot_longer(cols = c('Sentenced',	'Civil',	'Federal',	'Technical.Parole.Violators',	'State.Readies',	'Other.Unsentenced'), names_to = "Category", values_to = "Freq") %>%
+  group_by(Year, `Facility.Name..ORI.`, Category) %>%
+  summarize(Freq = sum(Freq), .groups = "drop") %>%
+  ungroup()
+
+ggplot(counts3, aes(x = Category, y = Freq, fill = `Facility.Name..ORI.`)) +
+  geom_col(position = "dodge") +
+  facet_wrap(~Year)+
+  labs(title = "Jail Population NYC & Non-NYC Facilities",
+       x = "Category",
+       y = "Frequency") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1)) + coord_flip()
+```
+
+```{r, echo=FALSE, comment=NA, message=FALSE, warning=FALSE}
+hate_crime_data_analysis <- read.csv("C:/Users/DELL/Desktop/Columbia/Sem 1/EDAV/Final Project/Hate_Crimes_by_County_and_Bias_Type__Beginning_2010.csv")
+
+hate_crime_data_analysis <- hate_crime_data_analysis %>% 
+  select(County, Year, Crime.Type, Total.Incidents)
+```
+
+```{r,fig.width=50, fig.height=30, echo=FALSE, comment=NA, message=FALSE, warning=FALSE}
+ggplot(hate_crime_data, aes(x =Year, y = Total.Incidents, fill = Crime.Type)) +
+  geom_bar(stat = "identity") +
+  facet_wrap(~County, scales = "free_y") +
+  labs(title = "Hate Crime Incidents by Crime Type and County",
+       x = "Crime Type",
+       y = "Total Incidents") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+
+```{r,fig.width=50, fig.height=30, echo=FALSE, comment=NA, message=FALSE, warning=FALSE}
+
+hate_crime_data_analysis$group <- factor(hate_crime_data_analysis$County)
+
+print(colnames(hate_crime_data_analysis))
+plot_ly(hate_crime_data_analysis, x = ~Year, y = ~Total.Incidents, type = 'bar',
+        color = ~group, facet_col = ~Crime.Type) %>%
+  layout(title = "Hate Crime Incidents by Crime Type and County",
+         xaxis = list(title = "Year"),
+         yaxis = list(title = "Total Incidents"),
+         showlegend = FALSE)
+
+```
+
+```{r,fig.width=50, fig.height=30, echo=FALSE, comment=NA, message=FALSE, warning=FALSE}
+hate_crime_data_types<- read.csv("C:/Users/DELL/Desktop/Columbia/Sem 1/EDAV/Final Project/Hate_Crimes_by_County_and_Bias_Type__Beginning_2010.csv")
+
+n <- c('Year')
+race_list <- c('Anti.Hispanic','Anti.Multi.Racial.Groups','Anti.Non.Hispanic.','Anti.Other.Race')
+color_list <-c('Anti.White','Anti.Black')
+sexual_orientation_list<-c('Anti.Heterosexual','Anti.Bisexual','Anti.Transgender')
+gender_orientation_list <-c('Anti.Male','Anti.Female','Anti.Gender.Non.Conforming','Anti.Gay..Male.and.Female.','Anti.Gay.Female','Anti.Gay.Male')
+disability_list<-c('Anti.Physical.Disability','Anti.Mental.Disability')
+age_list <-c('Anti.Age.')
+religion_list <-c('Anti.Islamic..Muslim.','Anti.Atheism.Agnosticism','Anti.Other.Christian','Anti.Buddhist','Anti.Hindu','Anti.Sikh')
+```
+
+
+```{r}
+all_subcategories <- c(n,race_list, color_list, sexual_orientation_list, gender_orientation_list,disability_list,age_list,religion_list)
+
+# Create a new dataframe with selected columns
+new_df <- hate_crime_data_types[, all_subcategories, drop = FALSE]
+
+combined_df <- new_df %>%
+  group_by(Year) %>%
+  summarise_all(sum) 
+```
+
+```{r}
+combined_df <- combined_df %>%
+  mutate(Year = as.Date(paste(Year), format = "%Y"))
+
+melted_data <- tidyr::gather(combined_df, key = "Group", value = "Count", -Year)
+
+plot_ly(melted_data, x = ~Year, y = ~Count, color = ~Group, type = 'scatter', mode = 'lines') %>%
+  layout(title = "Hate Crimes Relationships Over Time",
+         xaxis = list(title = "Year"),
+         yaxis = list(title = "Count"),
+         showlegend = TRUE)
+
+```
+
+```{r, echo=FALSE, comment=NA, message=FALSE, warning=FALSE}
+# devtools::install_github("timelyportfolio/parcoords")
+# library(parcoords)
+
+combined_df <- combined_df %>%
+  mutate(Year = as.Date(paste(Year), format = "%Y"))
+
+melted_data <- tidyr::gather(combined_df, key = "Group", value = "Count", -Year)
+
+
+# Create a new variable 'Group' indicating the category each subcategory belongs to
+melted_data <- melted_data %>%
+  mutate(NewGroup = case_when(
+    Group %in% race_list ~ 'Race',
+    Group %in% color_list ~ 'Color',
+    Group %in% sexual_orientation_list ~ 'Sexual Orientation',
+    Group %in% gender_orientation_list ~ 'Gender',
+    Group %in% age_list ~ 'Age',
+    Group %in% disability_list ~ 'Disability',
+    Group %in% religion_list ~ 'Religion'
+  ))
+
+melted_data <- melted_data %>% select(-Group) %>%
+  group_by(Year,NewGroup) %>%
+  summarise_all(sum) 
+  
+melted_data <- melted_data %>%
+  arrange(Year)
+
+# Create line plot
+# plot_ly(melted_data, x = ~Year, y = ~Count, color = ~NewGroup, type = 'scatter', mode = 'lines+markers') %>%
+#   layout(title = "Rescaled Values for Different Datasets",
+#          xaxis = list(title = "Year"),
+#          yaxis = list(title = "Grouped Value"),
+#          showlegend = TRUE)  
+# # theme(legend = list(x = 0.85, y = 1))  # Adjust legend position
+
+
+ggplot(melted_data, aes(x = Year, y = Count, color = NewGroup)) +
+  geom_line() +
+  geom_point() +
+  labs(title = "Grouped Categories",
+       x = "Year",
+       y = "Total Value") +
+  scale_x_date(date_breaks = "years", date_labels = "%Y")+
+  theme(legend.position = "top")
+```
+
+
+```{r, echo=FALSE, comment=NA, message=FALSE, warning=FALSE}
+library(choroplethrMaps)
+library(choroplethr)
+library(plotly)
+data(county.regions)
+```
+
+```{r, echo=FALSE, comment=NA, message=FALSE, warning=FALSE}
+adult_arrest_data <- read.csv("C:/Users/DELL/Desktop/Columbia/Sem 1/EDAV/Final Project/Index_Crimes_by_County_and_Agency__Beginning_1990.csv", header=TRUE)
+
+playr_data <- adult_arrest_data %>% filter(Agency =="County Total") %>% select('County','Year','Index.Total') %>%
+  mutate(County = tolower(County))
+# playr_data
+
+ny_county_code_names = county.regions %>%
+  filter(state.name == "new york") %>%
+  select(region,'county.name')
+
+ny_county_code_names <- ny_county_code_names %>% rename(County =`county.name`)
+
+playr_data <- playr_data %>% rename(value = `Index.Total`)
+
+playr_data <- playr_data %>%
+  mutate(County = ifelse(County == "st lawrence", "st. lawrence", County))
+```
+
+
+```{r, echo=FALSE, comment=NA, message=FALSE, warning=FALSE}
+merged_df <- merge(playr_data, ny_county_code_names, by = "County", all = TRUE)
+```
+
+
+
+
+```{r, echo=FALSE, comment=NA, message=FALSE, warning=FALSE}
+library(purrr)
+library(dplyr)
+unique_years <- sort(unique(merged_df$Year))
+
+for (i in seq_along(unique_years)) {
+  year <- unique_years[i]
+  
+  # Filter data for the current year
+  filtered_data <- merged_df %>% filter(Year == year) %>% select(region, value)
+
+  # Create a county choropleth plot
+  plot <- county_choropleth(filtered_data,
+                             title = paste("Population of Counties in New York State in", year),
+                             legend = "Population",
+                             county_zoom = ny_county_code_names$region)
+
+  # Save the plot to a file
+  filename <- paste("docs/data_files/county_choropleth_", i, ".png", sep = "")
+  ggsave(filename, plot)
+}
+```
+
+
+
+
+```{r, echo=FALSE, comment=NA, message=FALSE, warning=FALSE}
+
+library(gganimate)
+htmltools::tags$iframe(title = "Embedded HTML", src = "choropleth.html", height=500, width=800)
+
+```
+
+```{r, echo=FALSE,  message=FALSE, warning=FALSE, comment=NA}
+
+adult_arrest_data <- read.csv("C:/Users/DELL/Desktop/Columbia/Sem 1/EDAV/Final Project/Index_Crimes_by_County_and_Agency__Beginning_1990.csv", header=TRUE)
+
+
+video_data_violent <- adult_arrest_data %>%
+  filter(Agency == "County Total", County %in% c("Kings", "Queens", "New York", "Bronx","Erie")) %>%
+  select(County, Year, Murder, Rape, Robbery, Aggravated.Assault)
+
+
+
+video_data_property <- adult_arrest_data %>% filter(Agency == "County Total", County %in% c("Kings", "Queens", "New York", "Bronx","Erie")) %>% select(County,Year,Burglary,	Larceny	,Motor.Vehicle.Theft)
+
+```
+
+
+
+```{r, echo=FALSE,  message=FALSE, warning=FALSE, comment=NA}
+
+library(ggplot2)
+library(gganimate)
+
+# Assuming you already have the required data in 'video_data_violent'
+
+video_data_violent <- tidyr::gather(video_data_violent, key = "variable", value = "value", -County, -Year)
+
+video_data_violent <- video_data_violent %>%
+  arrange(Year)
+
+
+video_data_property <- tidyr::gather(video_data_property, key = "variable", value = "value", -County, -Year)
+
+video_data_property <- video_data_property %>%
+  arrange(Year)
+```
+```{r, fig.show='animate', echo=FALSE,  message=FALSE, warning=FALSE, comment=NA}
+# Create an animated stacked bar chart
+
+staticplot <- ggplot(video_data_violent, aes(x = County, y = value, fill = factor(variable))) +
+  geom_bar(stat = "identity", width = 0.7) +
+  labs(x = "County", y = "Total Violent Crimes")
+  guides(fill = guide_legend(title = "Crime Type")) +
+    coord_flip() +
+  scale_y_continuous(labels = scales::comma)+
+  theme(
+        panel.background = element_blank(),
+        panel.border = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        panel.grid.major.x = element_line(size = 0.1, color = "grey"),
+        panel.grid.minor.x = element_line(size = 0.1, color = "grey"),
+        plot.title = element_text(size = 25, hjust = 0.5, face = "bold", colour = "grey", vjust = -1),
+        plot.subtitle = element_text(size = 18, hjust = 0.5, face = "italic", color = "grey"),
+        plot.caption = element_text(size = 8, hjust = 0.5, face = "italic", color = "grey"),
+        plot.background = element_blank())
+
+# Animate and save the GIF
+anim <- staticplot +
+  transition_states(Year, transition_length = 4, state_length = 1) +
+  view_follow(fixed_x = TRUE) +
+  labs(title = 'Violent Crimes per Year : {closest_state}',  
+       subtitle  =  "Top 5 Countys")
+
+animate(anim, nframes = 200, fps = 20, width = 500, height = 500, renderer = gifski_renderer("docs/data_files/animated_crime_chart.gif"))
+```
+
+```{r, fig.show='animate', echo=FALSE,  message=FALSE, warning=FALSE, comment=NA}
+# Create an animated stacked bar chart
+
+staticplot <- ggplot(video_data_property, aes(x = County, y = value, fill = factor(variable))) +
+  geom_bar(stat = "identity", width = 0.7) +
+  labs(x = "County", y = "Total Property Crimes")
+  guides(fill = guide_legend(title = "Crime Type")) +
+    coord_flip() +
+  scale_y_continuous(labels = scales::comma)+
+  theme(
+        panel.background = element_blank(),
+        panel.border = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        panel.grid.major.x = element_line(size = 0.1, color = "grey"),
+        panel.grid.minor.x = element_line(size = 0.1, color = "grey"),
+        plot.title = element_text(size = 25, hjust = 0.5, face = "bold", colour = "grey", vjust = -1),
+        plot.subtitle = element_text(size = 18, hjust = 0.5, face = "italic", color = "grey"),
+        plot.caption = element_text(size = 8, hjust = 0.5, face = "italic", color = "grey"),
+        plot.background = element_blank())
+
+# Animate and save the GIF
+anim <- staticplot +
+  transition_states(Year, transition_length = 4, state_length = 1) +
+  view_follow(fixed_x = TRUE) +
+  labs(title = 'Property Crimes per Year : {closest_state}',  
+       subtitle  =  "Top 5 Countys")
+
+animate(anim, nframes = 200, fps = 20, width = 500, height = 500, renderer = gifski_renderer("docs/data_files/animated_property_chart.gif"))
+```
+
+```{r, echo=FALSE,  message=FALSE, warning=FALSE, comment=NA}
+
+adult_arrest_data <- read.csv("C:/Users/DELL/Desktop/Columbia/Sem 1/EDAV/Final Project/Index_Crimes_by_County_and_Agency__Beginning_1990.csv", header=TRUE)
+
+d3_data_violent <- adult_arrest_data %>%
+  filter(Agency == "County Total") %>%
+  select(County, Year, Murder, Rape, Robbery, Aggravated.Assault,Burglary,	Larceny	,Motor.Vehicle.Theft)
+```
+
+```{r, echo=FALSE,  message=FALSE, warning=FALSE, comment=NA}
+library(jsonlite)
+json_data <- toJSON(d3_data_violent, pretty = TRUE)
+writeLines(json_data, "docs/data_files/crimesnyc_nonnyc.json")
+```
+
+
+
+
+

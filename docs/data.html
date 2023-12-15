@@ -316,23 +316,133 @@ ul.task-list li input[type="checkbox"] {
 <section id="jail-population-by-county" class="level4" data-number="2.4.1.1">
 <h4 data-number="2.4.1.1" class="anchored" data-anchor-id="jail-population-by-county"><span class="header-section-number">2.4.1.1</span> Jail Population by County</h4>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>'data.frame':   1723 obs. of  12 variables:
- $ Facility.Name..ORI.       : chr  "All NYC Facilities" "All NYC Facilities" "All NYC Facilities" "All NYC Facilities" ...
- $ Year                      : int  2022 2021 2020 2019 2018 2017 2016 2022 2021 2020 ...
- $ Census                    : int  5562 5467 4473 7234 8346 9152 9621 9931 9782 8219 ...
- $ Boarded.Out               : int  13 4 2 5 6 7 14 160 118 113 ...
- $ Boarded.In                : int  0 0 0 0 0 0 0 218 165 125 ...
- $ In.House.Census           : int  5549 5463 4471 7228 8340 9145 9607 9990 9828 8231 ...
- $ Sentenced                 : int  347 184 225 800 1047 1277 1273 1856 1561 1556 ...
- $ Civil                     : int  2 1 4 8 7 9 11 34 22 30 ...
- $ Federal                   : int  85 75 63 75 95 113 115 1337 1306 1117 ...
- $ Technical.Parole.Violators: int  53 244 368 738 718 683 658 228 609 742 ...
- $ State.Readies             : int  153 157 15 10 11 16 22 247 467 212 ...
- $ Other.Unsentenced         : int  4909 4803 3796 5597 6463 7047 7527 6288 5863 4574 ...</code></pre>
-</div>
 <div class="cell-output-display">
-
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 1%">
+<col style="width: 9%">
+<col style="width: 6%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 13%">
+<col style="width: 7%">
+<col style="width: 8%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">Facility.Name..ORI.</th>
+<th style="text-align: left;">Year</th>
+<th style="text-align: left;">Census</th>
+<th style="text-align: left;">Boarded.Out</th>
+<th style="text-align: left;">Boarded.In</th>
+<th style="text-align: left;">In.House.Census</th>
+<th style="text-align: left;">Sentenced</th>
+<th style="text-align: left;">Civil</th>
+<th style="text-align: left;">Federal</th>
+<th style="text-align: left;">Technical.Parole.Violators</th>
+<th style="text-align: left;">State.Readies</th>
+<th style="text-align: left;">Other.Unsentenced</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Length:1723</td>
+<td style="text-align: left;">Min. :1997</td>
+<td style="text-align: left;">Min. : 0.0</td>
+<td style="text-align: left;">Min. : 0.00</td>
+<td style="text-align: left;">Min. : 0.00</td>
+<td style="text-align: left;">Min. : 0.0</td>
+<td style="text-align: left;">Min. : 0.0</td>
+<td style="text-align: left;">Min. : 0.000</td>
+<td style="text-align: left;">Min. : 0.00</td>
+<td style="text-align: left;">Min. : 0.00</td>
+<td style="text-align: left;">Min. : 0.00</td>
+<td style="text-align: left;">Min. : -45.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Class :character</td>
+<td style="text-align: left;">1st Qu.:2003</td>
+<td style="text-align: left;">1st Qu.: 66.0</td>
+<td style="text-align: left;">1st Qu.: 0.00</td>
+<td style="text-align: left;">1st Qu.: 0.00</td>
+<td style="text-align: left;">1st Qu.: 66.5</td>
+<td style="text-align: left;">1st Qu.: 19.0</td>
+<td style="text-align: left;">1st Qu.: 0.000</td>
+<td style="text-align: left;">1st Qu.: 0.00</td>
+<td style="text-align: left;">1st Qu.: 2.00</td>
+<td style="text-align: left;">1st Qu.: 1.00</td>
+<td style="text-align: left;">1st Qu.: 31.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Mode :character</td>
+<td style="text-align: left;">Median :2010</td>
+<td style="text-align: left;">Median : 123.0</td>
+<td style="text-align: left;">Median : 1.00</td>
+<td style="text-align: left;">Median : 1.00</td>
+<td style="text-align: left;">Median : 127.0</td>
+<td style="text-align: left;">Median : 34.0</td>
+<td style="text-align: left;">Median : 0.000</td>
+<td style="text-align: left;">Median : 1.00</td>
+<td style="text-align: left;">Median : 6.00</td>
+<td style="text-align: left;">Median : 2.00</td>
+<td style="text-align: left;">Median : 64.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Mean :2010</td>
+<td style="text-align: left;">Mean : 480.5</td>
+<td style="text-align: left;">Mean : 11.24</td>
+<td style="text-align: left;">Mean : 11.16</td>
+<td style="text-align: left;">Mean : 480.4</td>
+<td style="text-align: left;">Mean : 130.6</td>
+<td style="text-align: left;">Mean : 2.449</td>
+<td style="text-align: left;">Mean : 30.12</td>
+<td style="text-align: left;">Mean : 28.83</td>
+<td style="text-align: left;">Mean : 10.75</td>
+<td style="text-align: left;">Mean : 277.6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">3rd Qu.:2016</td>
+<td style="text-align: left;">3rd Qu.: 330.0</td>
+<td style="text-align: left;">3rd Qu.: 5.00</td>
+<td style="text-align: left;">3rd Qu.: 7.00</td>
+<td style="text-align: left;">3rd Qu.: 329.0</td>
+<td style="text-align: left;">3rd Qu.: 76.0</td>
+<td style="text-align: left;">3rd Qu.: 2.000</td>
+<td style="text-align: left;">3rd Qu.: 18.00</td>
+<td style="text-align: left;">3rd Qu.: 17.00</td>
+<td style="text-align: left;">3rd Qu.: 6.00</td>
+<td style="text-align: left;">3rd Qu.: 173.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Max. :2022</td>
+<td style="text-align: left;">Max. :17016.0</td>
+<td style="text-align: left;">Max. :612.00</td>
+<td style="text-align: left;">Max. :619.00</td>
+<td style="text-align: left;">Max. :17020.0</td>
+<td style="text-align: left;">Max. :5436.0</td>
+<td style="text-align: left;">Max. :109.000</td>
+<td style="text-align: left;">Max. :1344.00</td>
+<td style="text-align: left;">Max. :1275.00</td>
+<td style="text-align: left;">Max. :1288.00</td>
+<td style="text-align: left;">Max. :10154.0</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </section>
@@ -869,36 +979,188 @@ ul.task-list li input[type="checkbox"] {
 <section id="adult-arrests-18-and-older-by-county" class="level4" data-number="2.4.1.4">
 <h4 data-number="2.4.1.4" class="anchored" data-anchor-id="adult-arrests-18-and-older-by-county"><span class="header-section-number">2.4.1.4</span> Adult Arrests (18 and older) by County</h4>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>'data.frame':   22048 obs. of  15 variables:
- $ County             : chr  "Albany" "Albany" "Albany" "Albany" ...
- $ Agency             : chr  "Albany City PD" "Albany County Park PD" "Albany County Sheriff" "Albany County State Police" ...
- $ Year               : int  2022 2022 2022 2022 2022 2022 2022 2022 2022 2022 ...
- $ Months.Reported    : int  12 12 12 12 12 12 12 12 12 NA ...
- $ Index.Total        : int  4746 1 127 131 1 434 40 312 2860 9717 ...
- $ Violent.Total      : int  944 0 11 42 0 24 8 48 122 1253 ...
- $ Murder             : int  14 0 0 0 0 0 0 0 2 17 ...
- $ Rape               : int  70 0 3 26 0 9 0 7 1 131 ...
- $ Robbery            : int  233 0 1 5 0 5 3 6 45 305 ...
- $ Aggravated.Assault : int  627 0 7 11 0 10 5 35 74 800 ...
- $ Property.Total     : int  3802 1 116 89 1 410 32 264 2738 8464 ...
- $ Burglary           : int  566 0 10 7 0 25 5 25 189 897 ...
- $ Larceny            : int  2670 1 97 77 1 371 26 214 2448 6795 ...
- $ Motor.Vehicle.Theft: int  566 0 9 5 0 14 1 25 101 772 ...
- $ Region             : chr  "Non-New York City" "Non-New York City" "Non-New York City" "Non-New York City" ...</code></pre>
-</div>
 <div class="cell-output-display">
-
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 1%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 5%">
+<col style="width: 6%">
+<col style="width: 5%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 7%">
+<col style="width: 5%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 7%">
+<col style="width: 6%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">County</th>
+<th style="text-align: left;">Agency</th>
+<th style="text-align: left;">Year</th>
+<th style="text-align: left;">Months.Reported</th>
+<th style="text-align: left;">Index.Total</th>
+<th style="text-align: left;">Violent.Total</th>
+<th style="text-align: left;">Murder</th>
+<th style="text-align: left;">Rape</th>
+<th style="text-align: left;">Robbery</th>
+<th style="text-align: left;">Aggravated.Assault</th>
+<th style="text-align: left;">Property.Total</th>
+<th style="text-align: left;">Burglary</th>
+<th style="text-align: left;">Larceny</th>
+<th style="text-align: left;">Motor.Vehicle.Theft</th>
+<th style="text-align: left;">Region</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Length:22048</td>
+<td style="text-align: left;">Length:22048</td>
+<td style="text-align: left;">Min. :1990</td>
+<td style="text-align: left;">Min. : 1.0</td>
+<td style="text-align: left;">Min. : 1</td>
+<td style="text-align: left;">Min. : 0.0</td>
+<td style="text-align: left;">Min. : 0.000</td>
+<td style="text-align: left;">Min. : 0.000</td>
+<td style="text-align: left;">Min. : 0.00</td>
+<td style="text-align: left;">Min. : 0.0</td>
+<td style="text-align: left;">Min. : 0</td>
+<td style="text-align: left;">Min. : 0.0</td>
+<td style="text-align: left;">Min. : 0.0</td>
+<td style="text-align: left;">Min. : 0.0</td>
+<td style="text-align: left;">Length:22048</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Class :character</td>
+<td style="text-align: left;">Class :character</td>
+<td style="text-align: left;">1st Qu.:1997</td>
+<td style="text-align: left;">1st Qu.:12.0</td>
+<td style="text-align: left;">1st Qu.: 33</td>
+<td style="text-align: left;">1st Qu.: 2.0</td>
+<td style="text-align: left;">1st Qu.: 0.000</td>
+<td style="text-align: left;">1st Qu.: 0.000</td>
+<td style="text-align: left;">1st Qu.: 0.00</td>
+<td style="text-align: left;">1st Qu.: 1.0</td>
+<td style="text-align: left;">1st Qu.: 29</td>
+<td style="text-align: left;">1st Qu.: 4.0</td>
+<td style="text-align: left;">1st Qu.: 22.0</td>
+<td style="text-align: left;">1st Qu.: 0.0</td>
+<td style="text-align: left;">Class :character</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Mode :character</td>
+<td style="text-align: left;">Mode :character</td>
+<td style="text-align: left;">Median :2006</td>
+<td style="text-align: left;">Median :12.0</td>
+<td style="text-align: left;">Median : 139</td>
+<td style="text-align: left;">Median : 10.0</td>
+<td style="text-align: left;">Median : 0.000</td>
+<td style="text-align: left;">Median : 1.000</td>
+<td style="text-align: left;">Median : 1.00</td>
+<td style="text-align: left;">Median : 6.0</td>
+<td style="text-align: left;">Median : 127</td>
+<td style="text-align: left;">Median : 20.0</td>
+<td style="text-align: left;">Median : 99.0</td>
+<td style="text-align: left;">Median : 4.0</td>
+<td style="text-align: left;">Mode :character</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Mean :2006</td>
+<td style="text-align: left;">Mean :11.9</td>
+<td style="text-align: left;">Mean : 1282</td>
+<td style="text-align: left;">Mean : 201.1</td>
+<td style="text-align: left;">Mean : 2.099</td>
+<td style="text-align: left;">Mean : 9.987</td>
+<td style="text-align: left;">Mean : 79.26</td>
+<td style="text-align: left;">Mean : 109.8</td>
+<td style="text-align: left;">Mean : 1081</td>
+<td style="text-align: left;">Mean : 199.9</td>
+<td style="text-align: left;">Mean : 769.5</td>
+<td style="text-align: left;">Mean : 111.2</td>
+<td style="text-align: left;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">3rd Qu.:2014</td>
+<td style="text-align: left;">3rd Qu.:12.0</td>
+<td style="text-align: left;">3rd Qu.: 492</td>
+<td style="text-align: left;">3rd Qu.: 40.0</td>
+<td style="text-align: left;">3rd Qu.: 0.000</td>
+<td style="text-align: left;">3rd Qu.: 4.000</td>
+<td style="text-align: left;">3rd Qu.: 5.00</td>
+<td style="text-align: left;">3rd Qu.: 27.0</td>
+<td style="text-align: left;">3rd Qu.: 445</td>
+<td style="text-align: left;">3rd Qu.: 84.0</td>
+<td style="text-align: left;">3rd Qu.: 336.0</td>
+<td style="text-align: left;">3rd Qu.: 16.0</td>
+<td style="text-align: left;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Max. :2022</td>
+<td style="text-align: left;">Max. :12.0</td>
+<td style="text-align: left;">Max. :217786</td>
+<td style="text-align: left;">Max. :63087.0</td>
+<td style="text-align: left;">Max. :786.000</td>
+<td style="text-align: left;">Max. :1159.000</td>
+<td style="text-align: left;">Max. :36341.00</td>
+<td style="text-align: left;">Max. :24828.0</td>
+<td style="text-align: left;">Max. :173352</td>
+<td style="text-align: left;">Max. :39041.0</td>
+<td style="text-align: left;">Max. :122704.0</td>
+<td style="text-align: left;">Max. :50300.0</td>
+<td style="text-align: left;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA’s :9557</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
+</section>
+<section id="non-missing-values" class="level4" data-number="2.4.1.5">
+<h4 data-number="2.4.1.5" class="anchored" data-anchor-id="non-missing-values"><span class="header-section-number">2.4.1.5</span> 100% Non Missing Values</h4>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="data_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
-<section id="index-crimes-by-county-and-agency" class="level4" data-number="2.4.1.5">
-<h4 data-number="2.4.1.5" class="anchored" data-anchor-id="index-crimes-by-county-and-agency"><span class="header-section-number">2.4.1.5</span> Index Crimes by County and Agency</h4>
+<section id="index-crimes-by-county-and-agency" class="level4" data-number="2.4.1.6">
+<h4 data-number="2.4.1.6" class="anchored" data-anchor-id="index-crimes-by-county-and-agency"><span class="header-section-number">2.4.1.6</span> Index Crimes by County and Agency</h4>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="data_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>

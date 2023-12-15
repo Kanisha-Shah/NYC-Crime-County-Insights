@@ -30,7 +30,7 @@ library(GGally)
  
 ```
 
-
+### A Comprehensive Analysis of Crimes Over the Years Across Counties
 ```{r,fig.width=50, fig.height=30,echo=FALSE, comment=NA, message=FALSE, warning=FALSE}
 
 
@@ -39,17 +39,10 @@ Indexcrimes =  read_excel("C:/Users/DELL/Desktop/Columbia/Sem 1/EDAV/Final Proje
 
 Adult_18 =  read_excel("C:/Users/DELL/Desktop/Columbia/Sem 1/EDAV/Final Project/Adult_Arrests_18_and_Older_by_County___Beginning_1970_key.xlsx")
 
-#summary(Indexcrimes)
-
-#Dropping Months as missing values 
 
 drop = "Months Reported"
 Indexcrimes = Indexcrimes[,!(names(Indexcrimes) %in% drop)]
-#summary(Indexcrimes)
 
-
-
-#Rename columns 
 new_column_names <- c("Key","County","Agency","Year","Index_Total","Violent_Total", "Murder","Rape","Robbery","Aggravated_Assault","Property_Total","Burglary","Larceny", "Motor_Vehicle_Theft","Region")  
 
 
@@ -74,8 +67,6 @@ na_values_per_column <- colSums(is.na(Indexcrimes))
 # Check for NA or empty column names
 empty_col_names <- colnames(Indexcrimes) %in% c(NA, "")
 
-# Display columns with NA or empty names
-print(colnames(Indexcrimes)[empty_col_names])
 
 # Remove columns with NA or empty names
 Indexcrimes <- Indexcrimes[, !empty_col_names]
@@ -84,18 +75,15 @@ Indexcrimes <- Indexcrimes[, !empty_col_names]
 #As the values are repetitive we will take a subsuet of tit and work on it
 subset_df <- Indexcrimes %>% filter(Agency == "County Total")
 
-# subset_df
-
 ```
 We embark on our analytical journey by examining the evolving landscape of crime rates over the years. Our primary focus centers around the state of New York, where we delve into the occurrence of major heinous crimes. Through visual storytelling, we aim to uncover trends, patterns, and insights that may lie within the data sets, shedding light on the dynamic nature of criminal activities in this region.
 
 As we delved into our analysis, a noticeable surge in major crimes emerged, casting a spotlight on incidents unfolding across the vibrant landscape of New York City. This trend is vividly captured in the graph below : 
 
 
-
+### New York State Insights 
 ```{r,fig.width=50, fig.height=30,echo=FALSE, comment=NA, message=FALSE, warning=FALSE}
 
-subset_df
 #Data Needs to be rolled up at the total level 
 
 subset_NYC <-  subset_df %>%
@@ -104,12 +92,8 @@ subset_NYC <-  subset_df %>%
 
 p_opt<-ggplot(subset_df, aes(x=Year, y=Index_Total, group=County))+ geom_line(aes(color=County))+ geom_point(aes(color=County)) +xlab("Year") + ylab("Total Crimes") + ggtitle(" TOTAL NEW YORK STATE INSIGHTS ")
                                                                             
-# ggplotly(p_opt)
-subset_df
-
+ggplotly(p_opt)
 ```
-
-.
 
 A notable observation emerges as we scrutinize the data—over the span of a decade, crimes in each borough have witnessed a remarkable reduction, nearly halving. This trend persists, indicating a consistent decline in the subsequent decade as well. The numbers tell a story of positive change and enhanced safety across the diverse neighborhoods of New York City.
 
@@ -117,6 +101,7 @@ Observing the depicted graph, we discern a nuanced narrative within the vibrant 
 
 Based on the data, a significant portion, accounting for 40%, of the reported incidents is occurring within the bustling streets of New York City. This statistic highlights the concentration of activities and underscores the need for a focused examination of the city's safety dynamics.
 
+### New York City Insights 
 ```{r,fig.width=50, fig.height=30,echo=FALSE, comment=NA, message=FALSE, warning=FALSE}
 
 #Looking at the data the highest number of the crime is taking place at the the New York City in the five borough  so lets have a closer look at the  New York City 
@@ -135,6 +120,7 @@ ggplotly(p_opt_NNYC)
 ```
 
 Now, let's delve deeper into the specifics of the types of crimes that have been unfolding over the years. By examining the trends, we aim to unravel the patterns and gain insights into the nature of incidents.In the graph below, we illuminate the major categories of crimes, particularly those classified as property and violent offenses. The visual representation spans across time, offering insights into the unfolding trends of these crime types. 
+
 ```{r, echo=FALSE, comment=NA, message=FALSE, warning=FALSE}
 #Lets look at the overall picture of the Total crime in New York 
 
@@ -148,43 +134,23 @@ Pivot_longer <- subset_df %>%
   summarize(Freq = sum(Freq), .groups = "drop") %>%
   ungroup()
 
-print(Pivot_longer)
 
-gg = ggplot(Pivot_longer, aes(x = Region_type, y = Freq, fill = Category)) +
-  geom_col(position = "stack") +
-  facet_wrap(~Year) +
-  labs(title = "Stacked Bar Chart of Indexed Values (Violent and Property)",
-       x = "Region",
-       y = "Indexed Crime",
-       fill = "Facility Type") +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1)) +
-  scale_y_continuous(labels = scales::comma)
-
-ggplotly(gg)
-
-
+# gg = ggplot(Pivot_longer, aes(x = Region_type, y = Freq, fill = Category)) +
+#   geom_col(position = "stack") +
+#   facet_wrap(~Year) +
+#   labs(title = "Stacked Bar Chart of Indexed Values (Violent and Property)",
+#        x = "Region",
+#        y = "Indexed Crime",
+#        fill = "Facility Type") +
+#   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1)) +
+#   scale_y_continuous(labels = scales::comma)
+# 
+# ggplotly(gg)
 
 ```
-Our observation reveals a noteworthy trend – a substantial decrease in both violent crimes and property-related offenses over time. While both categories have experienced a decline, it becomes evident that the significant contributor to this positive shift is the reduction in property-related crimes. This insight highlights a positive trajectory in enhancing safety within New York City, particularly in the realm of property offenses.
-
-let's break down the major crime categories and explore how they are distributed:
-
-Violent Total:
-
-Murder
-Rape
-Robbery
-Aggravated Assault
 
 
-Property Total:
-
-Burglary
-Larceny
-Motor Vehicle Theft
-We will now delve into the data to analyze the distribution and trends of these specific crime types over the years.
-
-
+### Deep Dive into Violent Crimes over years
 ```{r,fig.width=10, fig.height=10,echo=FALSE, comment=NA, message=FALSE, warning=FALSE}
 # Lets deep Dive into into the reasons
 
@@ -203,11 +169,6 @@ Pivot_longer_reasons <- subset_df %>%
 
 
 
-
-print(Pivot_longer_reasons)
-
-
-
 ggplot(Pivot_longer_reasons, aes(x = Region_type, y = Freq, fill = Category )) +
   geom_col(position = "dodge") +
   facet_wrap(~Year)+
@@ -221,6 +182,8 @@ ggplot(Pivot_longer_reasons, aes(x = Region_type, y = Freq, fill = Category )) +
 Our analysis spotlights areas of concern within New York City, indicating that Bronx and Kings exhibit a higher prevalence of violent crimes. Following closely are New York and Queens, raising awareness about the safety dynamics in these regions.
 
 Socioeconomic Factors says: The Bronx has faced significant socioeconomic challenges, including high poverty rates, unemployment, and inadequate access to quality education and healthcare. These factors can contribute to higher crime rates.
+
+### Deep Dive into Property Crimes over years
 
 ```{r,fig.width=10, fig.height=10,echo=FALSE, comment=NA, message=FALSE, warning=FALSE}
 
@@ -238,11 +201,6 @@ Pivot_longer_reasons_p <- subset_df %>%
 
 
 
-
-print(Pivot_longer_reasons_p)
-
-
-
 ggplot(Pivot_longer_reasons_p, aes(x = Region_type, y = Freq, fill = Category )) +
   geom_col(position = "dodge") +
   facet_wrap(~Year)+
@@ -255,9 +213,9 @@ In our analysis, we observe that among property crimes, Burglary and Motor Vehic
 
 
 
-
 Let's embark on an illuminating exploration of crime distribution across New York City's diverse counties. Through an interactive parallel coordinates plot, we'll unveil the intricate patterns of each crime type, offering a comprehensive overview. This dynamic visualization allows us to filter and focus on specific counties and crime categories, providing an engaging and insightful journey into the multifaceted landscape of safety dynamics across the region.
 
+### In-Depth Analyses of County and Regional Crime Dynamics
 ```{r,fig.width=50, fig.height=30,echo=FALSE, comment=NA, message=FALSE, warning=FALSE}
 
 devtools::install_github("timelyportfolio/parcoords")
@@ -268,11 +226,6 @@ library(dplyr)
 subset_para_p1 <- Indexcrimes %>%
   filter(Agency == 'County Total') %>%
   select(c("County","Region","Rape", "Murder", "Robbery", "Aggravated_Assault", "Burglary", "Larceny", "Motor_Vehicle_Theft"))
-
-
-
-
-summary(subset_para_p1)
 
 
 #subset_para 
@@ -296,14 +249,14 @@ The distinct portrayal of New York City compared to non-New York regions reveals
 
 
 Below chart the gives the insights on the New York City : boroughs.
+
+### In-Depth Analyses of five major County
 ```{r,fig.width=50, fig.height=30,echo=FALSE, comment=NA, message=FALSE, warning=FALSE}
 
 
 subset_para <- Indexcrimes %>%
   filter(Region == 'New York City') %>%
   select(c("County","Rape", "Murder", "Robbery", "Aggravated_Assault", "Burglary", "Larceny", "Motor_Vehicle_Theft"))
-
-
 
 
 arrange(subset_para ) %>%
@@ -316,134 +269,6 @@ arrange(subset_para ) %>%
              withD3 = TRUE,
              width = 770,
              height = 600)
-
-
-
-
-
-
-
-
-```
-
-Transitioning to our next dataset, we immerse ourselves in a comprehensive exploration of crime data meticulously categorized into felonies and misdemeanors. This rich dataset unfolds a detailed account of criminal activities, encompassing a diverse array of crime types, including drug-related offenses and Driving While Intoxicated (DWI). Spanning multiple years, this dataset offers a panoramic view of crime metrics across various categories within different counties.
-
-Each row within the dataset encapsulates a specific county and year combination, providing a granular insight into the dynamics of criminal activities over time. The columns, laden with crime-related metrics, serve as the key to unraveling patterns, trends, and variations in criminal behavior. Join us on this analytical journey as we navigate through the layers of data, peeling back the intricacies of felonies, misdemeanors, and specific crime types, to build a nuanced understanding of the criminal landscape across counties and years.
-
-The upcoming graph serves as a visual representation of the county-wise distribution of average felony rates. In this Cleveland plot, we unveil the nuanced variations in felony rates across different counties. The plot offers a distinctive perspective, allowing us to discern patterns and outliers in the average felony rates within each county.
-
-```{r,fig.width=10, fig.height=5,echo=FALSE, comment=NA, message=FALSE, warning=FALSE}
-
-# summary(Adult_18)
-
-
-# Filtering top 10 percentile
-Adult_18_orders <-  Adult_18 %>%
-  arrange(desc(Total)) 
-
-
-
-ggplot(Adult_18_orders, aes(y = reorder(County, Total), x = Total)) +
-  geom_point(size = 3, color='orange') +
-  labs(title = "Cleveland Dot Plot of County with Highest Felony ",
-       x = "Total felony ",
-       y = "County")
-
-
-
-
-
-
-# Create a subset for the years 2010 to 2022
-subset_data <- Adult_18 %>%
-  filter(Year >= 2010 & Year <= 2022) 
-
-
-# Calculate the mean of 'Total' grouped by 'County'
-mean_by_county <- subset_data %>%
-  group_by(County) %>%
-  summarize(mean_total = mean(Total))
-
-summary(mean_by_county)
- 
-
-# Create the Cleveland Dot Plot faceted by year
-ggplot(mean_by_county, aes(y = reorder(County, mean_total), x = mean_total)) +
-  geom_point(size = 3, color = 'orange') +
-  labs(title = "Cleveland Dot Plot of County with Highest Felony",
-       x = "Total Felony",
-       y = "County")
-
-
-
-```
-
-This Cleveland plot illustrates the average Felony and Misdemeanor rates for various counties, prominently highlighting New York as having the highest combined offenses
-
-
-```{r,echo=FALSE, comment=NA, message=FALSE, warning=FALSE}
-
-# Assuming 'subset_data' is your data frame
-colnames(subset_data)
-subset_data <- subset_data %>% rename(Felony.Total = `Felony_Total`)
-subset_data <- subset_data %>% rename(Misdemeanor.Total = `Misdemeanor_Total`)
-summary(subset_data)
-
-# Group by 'Category' and calculate the mean of 'Felony_Total' and 'Misdemeanor_Felony'
-felony_grouped <- subset_data %>% 
-  group_by(County) %>% 
-  summarise(Average_Felony = mean(Felony_Total),
-            Average_Misdemeanor = mean(Misdemeanor_Total))
-
-felony_grouped
-felony_long <- felony_grouped %>%
-  pivot_longer(cols = c(Average_Felony, Average_Misdemeanor),
-               names_to = "Total",
-               values_to = "Mean_Value")
-
-# print(felony_long)
-# 
-# 
-# summary(felony.grouped)
-
-
-plot_ly(felony_long, x = ~Mean_Value, y = ~reorder(County, Mean_Value),
-        color = ~Total) %>%
-  add_markers() %>%
-  layout(xaxis = list(title = "Mean Value"),
-         yaxis = list(title = "County"))
-
-
-
-```
-
-
-This bar chart illustrates the total adult rates for five counties. Each bar represents a county, showcasing its respective adult rate, providing a quick comparison of adult rates across the selected regions
-
-```{r,echo=FALSE, comment=NA, message=FALSE, warning=FALSE}
-
-#Data Needs to be rolled up at the total level 
-
-
-
-
-# Adult_18 =  read_excel("C:/Users/HP/Documents/Columbia/MS_DS/EDAV/EDAV PROJECT FINAL/Adult_Arrests_18_and_Older_by_County___Beginning_1970_key.xlsx")
-
-summary(Adult_18)
-print(Adult_18)
-
-
-
-filtered_data <- Adult_18 %>%
-  filter(County %in% c("Bronx", "New York", "Richmond", "Queens", "Kings"))
-
-
-print(filtered_data)
-
-p_opt_18<-ggplot(filtered_data, aes(x=Year, y=Total, group=County))+ geom_line(aes(color=County))+ geom_point(aes(color=County)) +xlab("Year") + ylab("Total Felony") + ggtitle(" Total Adult Rate County  ")
-                                                                            
-ggplotly(p_opt_18)
-
 
 ```
 
@@ -734,6 +559,23 @@ This isn't just a map; it's a living, breathing story of New York State's crime 
 
 adult_arrest_data <- read.csv("C:/Users/DELL/Desktop/Columbia/Sem 1/EDAV/Final Project/Index_Crimes_by_County_and_Agency__Beginning_1990.csv", header=TRUE)
 
+d3_data_violent <- adult_arrest_data %>%
+  filter(Agency == "County Total") %>%
+  select(County, Year, Murder, Rape, Robbery, Aggravated.Assault,Burglary,	Larceny	,Motor.Vehicle.Theft)
+```
+
+```{r, echo=FALSE,  message=FALSE, warning=FALSE, comment=NA}
+library(jsonlite)
+json_data <- toJSON(d3_data_violent, pretty = TRUE)
+writeLines(json_data, "docs/data_files/crimesnyc_nonnyc.json")
+```
+
+
+
+```{r, echo=FALSE,  message=FALSE, warning=FALSE, comment=NA}
+
+adult_arrest_data <- read.csv("C:/Users/DELL/Desktop/Columbia/Sem 1/EDAV/Final Project/Index_Crimes_by_County_and_Agency__Beginning_1990.csv", header=TRUE)
+
 
 video_data_violent <- adult_arrest_data %>%
   filter(Agency == "County Total", County %in% c("Kings", "Queens", "New York", "Bronx","Erie")) %>%
@@ -805,8 +647,6 @@ The star of the show? Kings County takes the lead, showcasing the highest counts
 
 Watch closely as the visual narrative unfolds – Aggravated Assault dominates the scene, with Robbery not far behind, while Murder and Rape take a comparatively subdued stance. It's more than just numbers on a screen; it's a nuanced exploration of NYC's violent crime landscape over time. Join us in this visual journey, decoding the trends that shape the safety dynamics of our beloved city. 📉🏙️🚨
 
-
-
 ### Diving into the Heart of NYC: Animated Property Crime Trends
 
 You Joining us on a visual exploration of the urban jungle as we unravel the trends in property crimes across the five iconic boroughs of New York City. With an engaging animation, we've highlighted the pulse of the city's safety dynamics over the years.
@@ -846,23 +686,80 @@ Enter the stage, and behold the starring act – Larceny takes the spotlight, so
 As the animation guides us through the highs and lows, it becomes evident that the story is more than just statistics; it's a reflection of urban life. Tune in to witness the nuances of crime trends, decoding the rhythm of the city's safety landscape.
 
 
+Transitioning to our next dataset, we immerse ourselves in a comprehensive exploration of crime data meticulously categorized into felonies and misdemeanors. This rich dataset unfolds a detailed account of criminal activities, encompassing a diverse array of crime types, including drug-related offenses and Driving While Intoxicated (DWI). Spanning multiple years, this dataset offers a panoramic view of crime metrics across various categories within different counties.
 
-```{r, echo=FALSE,  message=FALSE, warning=FALSE, comment=NA}
+Each row within the dataset encapsulates a specific county and year combination, providing a granular insight into the dynamics of criminal activities over time. The columns, laden with crime-related metrics, serve as the key to unraveling patterns, trends, and variations in criminal behavior. Join us on this analytical journey as we navigate through the layers of data, peeling back the intricacies of felonies, misdemeanors, and specific crime types, to build a nuanced understanding of the criminal landscape across counties and years.
 
-adult_arrest_data <- read.csv("C:/Users/DELL/Desktop/Columbia/Sem 1/EDAV/Final Project/Index_Crimes_by_County_and_Agency__Beginning_1990.csv", header=TRUE)
+The upcoming graph serves as a visual representation of the county-wise distribution of average felony rates. In this Cleveland plot, we unveil the nuanced variations in felony rates across different counties. The plot offers a distinctive perspective, allowing us to discern patterns and outliers in the average felony rates within each county.
 
-d3_data_violent <- adult_arrest_data %>%
-  filter(Agency == "County Total") %>%
-  select(County, Year, Murder, Rape, Robbery, Aggravated.Assault,Burglary,	Larceny	,Motor.Vehicle.Theft)
+### Total Felony Over Year Across Counties
+```{r,fig.width=15, fig.height=20,echo=FALSE, comment=NA, message=FALSE, warning=FALSE}
+
+# Filtering top 10 percentile
+Adult_18_orders <-  Adult_18 %>%
+  arrange(desc(Total)) 
+
+
+
+# ggplot(Adult_18_orders, aes(y = reorder(County, Total), x = Total)) +
+#   geom_point(size = 3, color='orange') +
+#   labs(title = "Cleveland Dot Plot of County with Highest Felony ",
+#        x = "Total felony ",
+#        y = "County")
+
+# Create a subset for the years 2010 to 2022
+subset_data <- Adult_18 %>%
+  filter(Year >= 2010 & Year <= 2022) 
+
+
+# Calculate the mean of 'Total' grouped by 'County'
+mean_by_county <- subset_data %>%
+  group_by(County) %>%
+  summarize(mean_total = mean(Total))
+
+ 
+
+# Create the Cleveland Dot Plot faceted by year
+ggplot(mean_by_county, aes(y = reorder(County, mean_total), x = mean_total)) +
+  geom_point(size = 3, color = 'orange') +
+  labs(title = "Cleveland Dot Plot of County with Highest Felony",
+       x = "Total Felony",
+       y = "County")
+
+
+
 ```
 
-```{r, echo=FALSE,  message=FALSE, warning=FALSE, comment=NA}
-library(jsonlite)
-json_data <- toJSON(d3_data_violent, pretty = TRUE)
-writeLines(json_data, "docs/data_files/crimesnyc_nonnyc.json")
+This Cleveland plot illustrates the average Felony and Misdemeanor rates for various counties, prominently highlighting New York as having the highest combined offenses
+
+### Average Felony and Misdemeanor across Counties
+```{r,echo=FALSE, comment=NA, message=FALSE, warning=FALSE}
+
+# Assuming 'subset_data' is your data frame
+subset_data <- subset_data %>% rename(Felony_Total = `Felony Total`)
+subset_data <- subset_data %>% rename(Misdemeanor_Total = `Misdemeanor Total`)
+
+# Group by 'Category' and calculate the mean of 'Felony_Total' and 'Misdemeanor_Felony'
+felony_grouped <- subset_data %>% 
+  group_by(County) %>% 
+  summarise(Average_Felony = mean(Felony_Total),
+            Average_Misdemeanor = mean(Misdemeanor_Total))
+
+felony_grouped
+felony_long <- felony_grouped %>%
+  pivot_longer(cols = c(Average_Felony, Average_Misdemeanor),
+               names_to = "Total",
+               values_to = "Mean_Value")
+
+
+
+plot_ly(felony_long, x = ~Mean_Value, y = ~reorder(County, Mean_Value),
+        color = ~Total) %>%
+  add_markers() %>%
+  layout(xaxis = list(title = "Mean Value"),
+         yaxis = list(title = "County"))
+
+
+
 ```
-
-
-
-
 

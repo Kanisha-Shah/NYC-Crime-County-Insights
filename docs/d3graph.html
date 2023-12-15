@@ -6,11 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Kanisha Shah (ks4175)">
-<meta name="author" content="Dhruvi Shah (dms2338)">
-<meta name="dcterms.date" content="2023-12-15">
 
-<title>NYC Crime County Insights</title>
+<title>NYC Crime County Insights - 4&nbsp; Interactive graph</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -33,7 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./data.html" rel="next">
+<link href="./conclusion.html" rel="next">
+<link href="./results.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -75,7 +73,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./d3graph.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Interactive graph</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -105,7 +103,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
@@ -123,7 +121,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./d3graph.html" class="sidebar-item-text sidebar-link">
+  <a href="./d3graph.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Interactive graph</span></span></a>
   </div>
 </li>
@@ -139,47 +137,21 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a>
-  <ul class="collapse">
-  <li><a href="#did-you-read-the-post" id="toc-did-you-read-the-post" class="nav-link" data-scroll-target="#did-you-read-the-post"><span class="header-section-number">1.1</span> DID YOU READ THE POST?</a></li>
-  <li><a href="#uncovering-the-crime-chronicles-why-this-data-adventure" id="toc-uncovering-the-crime-chronicles-why-this-data-adventure" class="nav-link" data-scroll-target="#uncovering-the-crime-chronicles-why-this-data-adventure"><span class="header-section-number">1.2</span> UNCOVERING THE CRIME CHRONICLES: WHY THIS DATA ADVENTURE?</a></li>
-  <li><a href="#our-analysis-will-be-focused-on-what" id="toc-our-analysis-will-be-focused-on-what" class="nav-link" data-scroll-target="#our-analysis-will-be-focused-on-what"><span class="header-section-number">1.3</span> OUR ANALYSIS WILL BE FOCUSED ON WHAT??</a></li>
-  <li><a href="#what-do-we-want-to-do" id="toc-what-do-we-want-to-do" class="nav-link" data-scroll-target="#what-do-we-want-to-do"><span class="header-section-number">1.4</span> WHAT DO WE WANT TO DO?</a></li>
-  <li><a href="#four-most-interesting-questions" id="toc-four-most-interesting-questions" class="nav-link" data-scroll-target="#four-most-interesting-questions"><span class="header-section-number">1.5</span> Four most interesting Questions!</a></li>
-  </ul></li>
-  </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/Kanisha-Shah/NYC-Crimson-County-Insights/edit/main/index.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/Kanisha-Shah/NYC-Crimson-County-Insights/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">NYC Crime County Insights</h1>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Interactive graph</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Authors</div>
-    <div class="quarto-title-meta-contents">
-             <p>Kanisha Shah (ks4175) </p>
-             <p>Dhruvi Shah (dms2338) </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">December 15, 2023</p>
-    </div>
-  </div>
   
     
   </div>
@@ -187,39 +159,18 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="introduction" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Introduction</h1>
-<p>One day, we stumbled upon an eye-opening <a href="https://www.bloomberg.com/graphics/2022-is-nyc-safe-crime-stat-reality/">blog post</a> diving into New York City’s crime stats. Intrigued by the insights, we couldn’t resist exploring further, sparking our own investigative journey into the city’s fascinating dynamics.</p>
-<section id="did-you-read-the-post" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="did-you-read-the-post"><span class="header-section-number">1.1</span> DID YOU READ THE POST?</h2>
-<p>Let’s dive into a <a href="https://www.nyc.gov/site/nypd/news/p00088/nypd-citywide-crime-statistics-july-2023">statistical wonderland</a> where data tells tales and numbers unveil the secrets of our journey!</p>
-<p>The crime rate in New York has exhibited a consistent increase trend since 1990, reflecting unsuccessful law enforcement strategies and community-focused interventions. This incline not only signifies some more public safety which we need to impose but also the effectiveness of targeted crime prevention initiatives, contributing to a safer and more secure environment for residents and visitors alike</p>
-<p>Welcome to the exploration of the intricate dynamics of crime and societal facets within the vibrant and diverse landscape of New York. In this project, we delve into the analysis of four pivotal datasets – Hate Crime by County and Bias Type, Adult Arrests (18 and older) by County, Index Crimes by County and Agency, and Jail Population by County. Through these lenses, we seek to unravel the complexities of crime, justice, and societal biases that define the state of New York</p>
-</section>
-<section id="uncovering-the-crime-chronicles-why-this-data-adventure" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="uncovering-the-crime-chronicles-why-this-data-adventure"><span class="header-section-number">1.2</span> UNCOVERING THE CRIME CHRONICLES: WHY THIS DATA ADVENTURE?</h2>
-<p>Again, the choice of this topic stems from a profound curiosity about the factors influencing safety and security within New York’s counties. The state’s cultural, economic, and demographic diversity provides a rich backdrop for examining the multifaceted nature of crime. By honing in on Hate Crime, Adult Arrest, Index Crimes, and Jail Population, we aim to unearth insights into the unique challenges and successes experienced by New York communities.</p>
-</section>
-<section id="our-analysis-will-be-focused-on-what" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="our-analysis-will-be-focused-on-what"><span class="header-section-number">1.3</span> OUR ANALYSIS WILL BE FOCUSED ON WHAT??</h2>
-<p>Ever wondered what makes your hometown unique? Do you know what County is for? Buckle up for a fascinating ride into the heart of New York, where each county is a chapter in the story of our state’s vibrant tapestry. Picture counties as the superheroes of local governance, shaping the ebb and flow of daily life. They’re not just lines on a map; they’re the pulse of our communities! Now, imagine this: each county is a protagonist in a blockbuster movie, playing its part in a dynamic plot of diversity, challenges, and triumphs. Ready for an adventure where data uncovers the secrets of these counties? Let’s dive in and unravel the mysteries of New York, one county at a time!</p>
-</section>
-<section id="what-do-we-want-to-do" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="what-do-we-want-to-do"><span class="header-section-number">1.4</span> WHAT DO WE WANT TO DO?</h2>
-<p>We picked the four most interesting questions that struck our minds when we started exploring the data on this topic.</p>
-</section>
-<section id="four-most-interesting-questions" class="level2" data-number="1.5">
-<h2 data-number="1.5" class="anchored" data-anchor-id="four-most-interesting-questions"><span class="header-section-number">1.5</span> Four most interesting Questions!</h2>
-<ol type="1">
-<li><p>How have crime rates evolved over the years, and are there discernible patterns or fluctuations? Are there significant variations in crime rates a cross different counties and regions in New York?</p></li>
-<li><p>What factors contribute to the variation in adult arrest rates among New York counties? and how does the demographic makeup of a county influence arrest patterns? and are there correlations between adult arrest rates and other societal indicators within the state?</p></li>
-<li><p>What are the predominant index crimes within New York’s diverse counties? How do law enforcement agencies contribute to crime rates across the state? Are there geographical variations in the types and frequency of index crimes?</p></li>
-<li><p>How effective are different counties in managing and addressing criminal activity? Are there correlations between jail populations and other societal indicators within the state?</p></li>
-</ol>
+<style>
+  * {
+    font-family: sans-serif;
+  }
+</style>
+<div id="plot">
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+<script src="scripts/myscript.js"></script>
 
 
-</section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -457,10 +408,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./results.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Results</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./data.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data Description</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./conclusion.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Conclusion</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -472,7 +426,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
       &nbsp;
-    </div>
+    <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/Kanisha-Shah/NYC-Crimson-County-Insights/edit/main/d3graph.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/Kanisha-Shah/NYC-Crimson-County-Insights/issues/new" class="toc-action">Report an issue</a></p></div></div></div>
     <div class="nav-footer-right">This book was built with <a href="https://quarto.org/">Quarto</a>.</div>
   </div>
 </footer>

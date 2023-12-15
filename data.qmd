@@ -231,7 +231,7 @@ The decision has been made to drop observations with missing values. This strate
 #### Jail Population by County
 ```{r, echo=FALSE, comment=NA, message=FALSE, warning=FALSE}
 jail_crime_data <- read.csv("C:/Users/DELL/Desktop/Columbia/Sem 1/EDAV/Final Project/Jail_Population_By_County__Beginning_1997.csv")
-knitr::kable(str(jail_crime_data))
+knitr::kable(summary(jail_crime_data))
 ```
 
 #### Adult Crimes By County & Bias
@@ -250,9 +250,11 @@ knitr::kable(summary(hate_crime_data))
 #### Adult Arrests (18 and older) by County
 ```{r, echo=FALSE, comment=NA, message=FALSE, warning=FALSE}
 adult_arrest_data <- read.csv("C:/Users/DELL/Desktop/Columbia/Sem 1/EDAV/Final Project/Index_Crimes_by_County_and_Agency__Beginning_1990.csv", header=TRUE)
-knitr::kable(str(adult_arrest_data))
+knitr::kable(summary(adult_arrest_data))
 ```
 
+
+#### 100% Non Missing Values
 ```{r, echo=FALSE, comment=NA, message=FALSE, warning=FALSE}
 
 complete_percentage1 <- colMeans(!is.na(jail_crime_data)) * 100
@@ -271,11 +273,10 @@ combined_data <- rbind(data1, data2, data3)
 combined_data <- combined_data[order(combined_data$completeness, decreasing = TRUE), ]
 
 # Creating bar plots with ggplot and subplots
-ggplot(combined_data, aes(x = columns, y = completeness, fill = columns)) +
+ggplot(combined_data, aes(x = columns, y = completeness)) +
   geom_bar(stat = "identity", color = "black") +
   labs(title = "Percentage of Non-Missing Values by Column",
        x = "Columns", y = "Completeness (%)") +
-  theme_minimal() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   facet_wrap(~ dataset, scales = "free") +
   theme(legend.position = "none")

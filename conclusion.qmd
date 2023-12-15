@@ -1,7 +1,266 @@
 # Conclusion
+```{r,include=FALSE, echo=FALSE, comment=NA, message=FALSE, warning=FALSE}
+library(knitr)
+library(ggplot2)
+library(naniar)
+library(dplyr)
+library(scales)
+library(stringr)
+library(tidyr)
+library(plotly)
+devtools::install_github("timelyportfolio/parcoords")
+library(readxl)
+library(dplyr)
+
+library(ggplot2)
+library(plotly)
+library(dplyr)
+library(tidyverse)
+library(choroplethr)
+library(maps)
+library('parcoords')
+
+library(GGally)
+ 
+```
 
 As we delved into the numbers and stories of New York City, a vivid picture emerged. It's like reading chapters of a novel, each revealing the ups and downs of the city's life. From understanding who's in jail to tracking crime trends, we even explored the difficult topic of hate crimes.
 
 New York City, our main character, faced challenges but also showed strength, especially in places like Kings County. We uncovered uncomfortable truths about hate crimes related to 'Color,' 'Gender,' and 'Religion.' Amid animated charts and changing crime rates, a crucial question lingered – is NYC a safe place?
+
+```{r, echo=FALSE, comment=NA, message=FALSE, warning=FALSE}
+#Lets look at the overall picture of the Total crime in New York 
+
+#
+Indexcrimes =  read_excel("C:/Users/DELL/Desktop/Columbia/Sem 1/EDAV/Final Project/Index_Crimes_by_County_and_Agency__Beginning_1990_key.xlsx")
+
+
+Adult_18 =  read_excel("C:/Users/DELL/Desktop/Columbia/Sem 1/EDAV/Final Project/Adult_Arrests_18_and_Older_by_County___Beginning_1970_key.xlsx")
+
+
+drop = "Months Reported"
+Indexcrimes = Indexcrimes[,!(names(Indexcrimes) %in% drop)]
+
+new_column_names <- c("Key","County","Agency","Year","Index_Total","Violent_Total", "Murder","Rape","Robbery","Aggravated_Assault","Property_Total","Burglary","Larceny", "Motor_Vehicle_Theft","Region")  
+
+
+
+colnames(Indexcrimes) <- new_column_names
+#summary(Indexcrimes)
+
+
+
+# Check for NA values in the entire data frame
+na_values <- sum(is.na(Indexcrimes))
+
+# Check for NA values in each column
+na_values_per_column <- colSums(is.na(Indexcrimes))
+
+# Display the results
+# print(paste("Total NA values in the data frame:", na_values))
+# print("NA values per column:")
+# print(na_values_per_column)
+
+
+# Check for NA or empty column names
+empty_col_names <- colnames(Indexcrimes) %in% c(NA, "")
+
+
+# Remove columns with NA or empty names
+Indexcrimes <- Indexcrimes[, !empty_col_names]
+
+# Indexcrimes$Agency
+#As the values are repetitive we will take a subsuet of tit and work on it
+subset_df <- Indexcrimes %>% filter(Agency == "County Total")
+
+#Data Needs to be rolled up at the total level 
+
+subset_NYC <-  subset_df %>%
+  filter(Region != "Non-New York City")
+
+
+# p_opt<-ggplot(subset_df, aes(x=Year, y=Index_Total, group=County))+ geom_line(aes(color=County))+ geom_point(aes(color=County)) +xlab("Year") + ylab("Total Crimes") + ggtitle(" TOTAL NEW YORK STATE INSIGHTS ")
+#                                                                             
+
+
+#Looking at the data the highest number of the crime is taking place at the the New York City in the five borough  so lets have a closer look at the  New York City 
+
+
+#subset_NYC <-  subset_df %>%
+ # filter(Region != "Non-New York City")
+
+subset_NYC <-  subset_df %>%
+  filter(County %in% c("Bronx", "New York", "Richmond", "Queens", "Kings"))
+  
+
+# p_opt_NNYC<-ggplot(subset_NYC, aes(x=Year, y=Index_Total, group=County))+ geom_line(aes(color=County))+ geom_point(aes(color=County)) +xlab("Year") + ylab("Total Crimes") + ggtitle(" NEW CITY INSIGTS")
+#                                                                             
+# ggplotly(p_opt_NNYC)
+
+Pivot_longer <- subset_df %>%
+  pivot_longer(cols = c('Violent_Total', 'Property_Total'), names_to = "Category", values_to = "Freq") %>%
+  mutate(Region_type = ifelse(Region == "New York City", "NYC", "Non-New York City")) %>%
+  group_by(Year, Region_type, Category) %>%
+  summarize(Freq = sum(Freq), .groups = "drop") %>%
+  ungroup()
+
+
+gg = ggplot(Pivot_longer, aes(x = Region_type, y = Freq, fill = Category)) +
+  geom_col(position = "stack") +
+  facet_wrap(~Year) +
+  labs(title = "Stacked Bar Chart of Indexed Values (Violent and Property)",
+       x = "Region",
+       y = "Indexed Crime",
+       fill = "Facility Type") +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1)) +
+  scale_y_continuous(labels = scales::comma)
+
+ggplotly(gg)
+
+
+
+```
+
+A notable trend has been identified through our analysis – there has been a substantial decrease in both violent crimes and property-related offenses over time. Despite observing a decline in both categories, it is clear that the significant factor contributing to this positive trend is the reduction in property-related crimes. This observation underscores a positive trajectory in improving safety within New York City, particularly in the context of property offenses.
+
+Now, let's delve into the major crime categories to understand their distribution:
+
+Violent Total:
+
+Homicide
+Sexual Assault
+Robbery
+Aggravated Assault
+Property Total:
+
+Burglary
+Larceny
+Motor Vehicle Theft
+
+```{r,fig.width=10, fig.height=5,echo=FALSE, comment=NA, message=FALSE, warning=FALSE}
+
+# Filtering top 10 percentile
+Adult_18_orders <-  Adult_18 %>%
+  arrange(desc(Total)) 
+
+# Create a subset for the years 2010 to 2022
+subset_data <- Adult_18 %>%
+  filter(Year >= 2010 & Year <= 2022) 
+
+
+# Calculate the mean of 'Total' grouped by 'County'
+mean_by_county <- subset_data %>%
+  group_by(County) %>%
+  summarize(mean_total = mean(Total))
+
+
+
+```
+
+```{r,echo=FALSE, comment=NA, message=FALSE, warning=FALSE}
+
+# Assuming 'subset_data' is your data frame
+subset_data <- subset_data %>% rename(Felony_Total = `Felony Total`)
+subset_data <- subset_data %>% rename(Misdemeanor_Total = `Misdemeanor Total`)
+
+# Group by 'Category' and calculate the mean of 'Felony_Total' and 'Misdemeanor_Felony'
+felony_grouped <- subset_data %>% 
+  group_by(County) %>% 
+  summarise(Average_Felony = mean(Felony_Total),
+            Average_Misdemeanor = mean(Misdemeanor_Total))
+
+# felony_grouped
+felony_long <- felony_grouped %>%
+  pivot_longer(cols = c(Average_Felony, Average_Misdemeanor),
+               names_to = "Total",
+               values_to = "Mean_Value")
+
+```
+
+```{r,echo=FALSE, comment=NA, message=FALSE, warning=FALSE}
+
+
+filtered_data <- Adult_18 %>%
+  filter(County %in% c("Bronx", "New York", "Richmond", "Queens", "Kings"))
+
+
+p_opt_18<-ggplot(filtered_data, aes(x=Year, y=Total, group=County))+ geom_line(aes(color=County))+ geom_point(aes(color=County)) +xlab("Year") + ylab("Total Felony") + ggtitle(" Total Adult Rate County  ")
+                                                                            
+ggplotly(p_opt_18)
+
+
+```
+
+This bar chart illustrates the total adult rates for five counties. Each bar represents a county, showcasing its respective adult rate, providing a quick comparison of adult rates across the selected regions
+
+
+```{r,echo=FALSE, comment=NA, message=FALSE, warning=FALSE}
+hate_crime_data_types<- read.csv("C:/Users/DELL/Desktop/Columbia/Sem 1/EDAV/Final Project/Hate_Crimes_by_County_and_Bias_Type__Beginning_2010.csv")
+
+n <- c('Year')
+race_list <- c('Anti.Hispanic','Anti.Multi.Racial.Groups','Anti.Non.Hispanic.','Anti.Other.Race')
+color_list <-c('Anti.White','Anti.Black')
+sexual_orientation_list<-c('Anti.Heterosexual','Anti.Bisexual','Anti.Transgender')
+gender_orientation_list <-c('Anti.Male','Anti.Female','Anti.Gender.Non.Conforming','Anti.Gay..Male.and.Female.','Anti.Gay.Female','Anti.Gay.Male')
+disability_list<-c('Anti.Physical.Disability','Anti.Mental.Disability')
+age_list <-c('Anti.Age.')
+religion_list <-c('Anti.Islamic..Muslim.','Anti.Atheism.Agnosticism','Anti.Other.Christian','Anti.Buddhist','Anti.Hindu','Anti.Sikh')
+
+all_subcategories <- c(n,race_list, color_list, sexual_orientation_list, gender_orientation_list,disability_list,age_list,religion_list)
+
+# Create a new dataframe with selected columns
+new_df <- hate_crime_data_types[, all_subcategories, drop = FALSE]
+
+combined_df <- new_df %>%
+  group_by(Year) %>%
+  summarise_all(sum) 
+
+combined_df <- combined_df %>%
+  mutate(Year = as.Date(paste(Year), format = "%Y"))
+
+melted_data <- tidyr::gather(combined_df, key = "Group", value = "Count", -Year)
+
+# plot_ly(melted_data, x = ~Year, y = ~Count, color = ~Group, type = 'scatter', mode = 'lines') %>%
+#   layout(title = "Hate Crimes Relationships Over Time",
+#          xaxis = list(title = "Year"),
+#          yaxis = list(title = "Count"),
+#          showlegend = TRUE)
+
+
+combined_df <- combined_df %>%
+  mutate(Year = as.Date(paste(Year), format = "%Y"))
+
+melted_data <- tidyr::gather(combined_df, key = "Group", value = "Count", -Year)
+
+
+# Create a new variable 'Group' indicating the category each subcategory belongs to
+melted_data <- melted_data %>%
+  mutate(NewGroup = case_when(
+    Group %in% race_list ~ 'Race',
+    Group %in% color_list ~ 'Color',
+    Group %in% sexual_orientation_list ~ 'Sexual Orientation',
+    Group %in% gender_orientation_list ~ 'Gender',
+    Group %in% age_list ~ 'Age',
+    Group %in% disability_list ~ 'Disability',
+    Group %in% religion_list ~ 'Religion'
+  ))
+
+melted_data <- melted_data %>% select(-Group) %>%
+  group_by(Year,NewGroup) %>%
+  summarise_all(sum) 
+  
+melted_data <- melted_data %>%
+  arrange(Year)
+
+
+ggplot(melted_data, aes(x = Year, y = Count, color = NewGroup)) +
+  geom_line() +
+  geom_point() +
+  labs(title = "Grouped Categories",
+       x = "Year",
+       y = "Total Value") +
+  scale_x_date(date_breaks = "years", date_labels = "%Y")+
+  theme(legend.position = "top")
+```
 
 In conclusion, our analysis painted a dynamic picture of crime rates over time. While overall crime is going down, specific types of crimes still pose challenges. Policymakers and communities need to adapt to these changes, considering factors like money and where people live. This isn't just about numbers; it's a call for action, inviting everyone to play a role in shaping the ongoing story of safety and resilience in New York City. Now, the story awaits your input – what role will you play in the next chapter?

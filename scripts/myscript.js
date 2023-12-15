@@ -1,14 +1,11 @@
-// Load your data from the nyc.json file
-d3.json("docs/data_files/crimesnyc_nonnyc.json").then(function(data) {
-  // Use the loaded data in your D3.js code
-  const chart = createBubbleChart(data);
 
-  // Append the chart to the HTML body or another container element
+d3.json("docs/data_files/crimesnyc_nonnyc.json").then(function(data) {
+  const chart = createBubbleChart(data);
   document.body.appendChild(chart);
 });
 
 function createBubbleChart(data) {
-  // Specify the chart’s dimensions.
+
   const width = 928;
   const height = width;
 
